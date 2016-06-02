@@ -75,13 +75,26 @@
 	var svgContainer = d3.select("body").append("svg")
 		.attr("width",300)
 		.attr("height",200)
+		.data(textData)
+		.enter()
 		;
 	
 	svgContainer.append('div')
-		.attr('class', 'animalName');
+		.attr('class', 'animalName')
+		.attr("x", function(d) { return 10; })
+		.attr("y", function(d) { return 25+ (d.index*20); })
+		.text( function (d) { return d.name; })
+		.attr("font-family", "sans-serif")
+		.attr("font-size", "18px")
+		.attr("fill", "black");
 		
 	svgContainer.append('div').attr('class', 'animalSymptoms')
-		.append("text");
+		.attr("x", function(d) {return 75})
+		.attr("y", function(d) {return 25+ (d.index*20); })
+		.text( function (d) {return d.code;})
+		.attr("font-family", "sans-serif")
+		.attr("font-size", "18px")
+		.attr("fill", "black");
 		
 // 	var animalName = svgContainer.selectAll("text")
 // 		.data(textData)
@@ -97,21 +110,21 @@
 		.enter()
 		.append("text");
 		
-	var nameLabels = animalName
-		.attr("x", function(d) { return 10; })
-		.attr("y", function(d) { return 25+ (d.index*20); })
-		.text( function (d) { return d.name; })
-		.attr("font-family", "sans-serif")
-		.attr("font-size", "18px")
-		.attr("fill", "black");
-	
-	var symptomLabels = animalSymptoms
-		.attr("x", function(d) {return 75})
-		.attr("y", function(d) {return 25+ (d.index*20); })
-		.text( function (d) {return d.code;})
-		.attr("font-family", "sans-serif")
-		.attr("font-size", "18px")
-		.attr("fill", "black");
+// 	var nameLabels = animalName
+// 		.attr("x", function(d) { return 10; })
+// 		.attr("y", function(d) { return 25+ (d.index*20); })
+// 		.text( function (d) { return d.name; })
+// 		.attr("font-family", "sans-serif")
+// 		.attr("font-size", "18px")
+// 		.attr("fill", "black");
+// 	
+// 	var symptomLabels = animalSymptoms
+// 		.attr("x", function(d) {return 75})
+// 		.attr("y", function(d) {return 25+ (d.index*20); })
+// 		.text( function (d) {return d.code;})
+// 		.attr("font-family", "sans-serif")
+// 		.attr("font-size", "18px")
+// 		.attr("fill", "black");
 	
 	//get and print animal names
 	function drawText() {
