@@ -1,0 +1,14 @@
+{ 
+"header" : ["big","cage","grass","meow","chirp","long neck","moo"],
+		
+"animals" : [
+		{"name":"dog", "code":[-1,-1,0,-1,0,0,0]},
+    	{"name":"cat", "code":[-1,-1,0,1,0,0,0]},
+    	{"name":"hamster", "code":[-1,1,0,0,-1,0,0]},
+    	{"name":"bird", "code":[-1,1,0,0,1,0,0]},
+    	{"name":"bear", "code":[1,0,-1,0,0,-1,0]},
+    	{"name":"giraffe", "code":[1,0,-1,0,0,1,0]},
+    	{"name":"horse", "code":[1,0,1,0,0,0,-1]},
+		{"name":"cow", "code":[1,0,1,0,0,0,1]}
+	]
+}

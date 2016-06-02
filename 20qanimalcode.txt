@@ -1,0 +1,9 @@
+animal,big,cage,grass,meow,chirp,long neck,moo
+dog,-1,-1,0,-1,0,0,0
+cat,-1,-1,0,1,0,0,0
+hamster,-1,1,0,0,-1,0,0
+bird,-1,1,0,0,1,0,0
+bear,1,0,-1,0,0,-1,0
+giraffe,1,0,-1,0,0,1,0
+horse,1,0,1,0,0,0,-1
+cow,1,0,1,0,0,0,1
