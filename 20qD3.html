@@ -74,14 +74,23 @@
 		
 	var svgContainer = d3.select("body").append("svg")
 		.attr("width",300)
-		.attr("height",200);
+		.attr("height",200)
+		;
 	
-	var animalName = svgContainer.selectAll("text")
-		.data(textData)
-		.enter()
-		.append('div')
-		.attr('class', 'animalName')
+	svgContainer.append('div')
+		.attr('class', 'animalName');
+		
+	svgContainer.append('div').attr('class', 'animalSymptoms')
 		.append("text");
+		
+// 	var animalName = svgContainer.selectAll("text")
+// 		.data(textData)
+// 		.enter()
+// 		.append('div')
+// 		.attr('class', 'animalName')
+// 		.append('div')
+// 		.attr('class', 'animalSymptoms')
+// 		.append("text");
 		
 	var animalSymptoms = svgContainer.selectAll("text")
 		.data(textData)
