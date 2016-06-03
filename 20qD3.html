@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="//d3js.org/d3.v3.min.js"></script>
 </head>
 
@@ -22,8 +21,8 @@
 	<p id="question" class = "parag"></p> 
 	
 	<div>
-		<button class="button" id="yesButton">Yes</button>
-		<button class="button"  id="noButton">No</button>
+		<button class="button" onClick = "yesResponse()" id="yesButton">Yes</button>
+		<button class="button"  onClick = "noResponse()" id="noButton">No</button>
 	</div>
 	
 	<p id= "answer" class = "parag"></p>
@@ -56,12 +55,16 @@
 	d3.json("20qanimals.json", function(error, data){
 		animals = data.animals;
 		header = data.header;
-		
+		//add index and onSymptom to animal data
+		for(i=0; i<animals.length; i++){
+			animals[i].index = i;
+			animals[i].onSymptom = 0;
+		}
+				
 	var svg = d3.select("body").append("svg")
 		.attr("width",900)
 		.attr("height",200);
 		
-	console.log(svg);
 	svg.selectAll("g")
 	.data(animals)
 		.enter()
@@ -69,44 +72,56 @@
 		.append('g')
 			.append("text")
 				.attr("x", function(d) { return 10; })
-				.attr("y", function(d) { return 25+ (d.index*20); })
+				.attr("y", function(d) { return 15 + (d.index*20); })
 				.text( function (d) { return d.name + ":"; })
 				.attr("font-family", "sans-serif")
-				.attr("font-size", "16px")
+				.attr("font-size", "14px")
 				.attr("fill", "black");
 		for(i=0; i<animals[0].code.length; i++){
 			svg.selectAll('g')	
 				.append('text')
-					.attr("x", function(d) {return 100 + (i*120)})
-					.attr("y", function(d) {return 25+ (d.index*20); })
+					.attr("x", function(d) {return 100 + (d.onSymptom*100)})
+					.attr("y", function(d) {return 15 + (d.index*20); })
 					.text( function (d) {
 						if(d.code[i] == 0) {return ""}
-						if(d.code[i] == 1) {return header[i]}
-						if(d.code[i] == -1){return "not " + header[i]}
+						if(d.code[i] == 1) {d.onSymptom++; return header[i]}
+						if(d.code[i] == -1){d.onSymptom++; return "not " + header[i]}
 					;})
 					.attr("font-family", "sans-serif")
-					.attr("font-size", "16px")
+					.attr("font-size", "14px")
 					.attr("fill", "black");
 		}
 	});
 	
-	
 	function yesResponse() {
-		//update visualization
-		for(i=0; i<animals.length; i++){ //go through each animal
-			//if answered yes and this animal requires a no here
-			if(animals[i].code[index] == "-1"){
-				//make red
-				animals[i].code[index] = animals[i].code[index] + "r";				
-			}
-			
-			//if answered yes and this animal requires a yes here
-			else if(animals[i].code[index] == "1"){
-				//make green
-				animals[i].code[index] = animals[i].code[index] + "g";
-			}
-		}
+		//for(i=0; i<animals.length; i++){
+			d3.select("svg").selectAll("g")
+				.selectAll("text")
+					.attr( "fill", function (d) {
+						if(d.code[index] == 1) {return "green"}
+						if(d.code[index] == -1){return "red"}
+			;})
+		//}
 	
+		// update visualization
+// 		for(i=0; i<animals.length; i++){ //go through each animal
+// 			if answered yes and this animal requires a no here
+// 			if(animals[i].code[index] == "-1"){
+// 				make red
+// 				animals[i].code[index] = animals[i].code[index] + "r";				
+// 			}
+// 			
+// 			if answered yes and this animal requires a yes here
+// 			else if(animals[i].code[index] == "1"){
+// 				make green
+// 				animals[i].code[index] = animals[i].code[index] + "g";
+// 			}
+// 		}
+// 	
+
+		//update visualization
+		
+
 		index = index*2 + 2;
 
 		if (index < (qas.length-1)/2) { //where answers start
@@ -122,22 +137,31 @@
 	}
 	
 	function noResponse() {
+		//for(i=0; i<animals.length; i++){
+			d3.select("svg").selectAll("g")
+				.selectAll("text")
+					.attr( "fill", function (d) {
+						if(d.code[index] == 1) {return "red"}
+						if(d.code[index] == -1){return "green"}
+			;})
+		//}
+	
 		//update visualization
-		for(i=0; i<animals.length; i++){ //go through each animal
-			//if answered no and this animal requires a no here
-			if(animals[i].code[index] == "-1"){
-				//make green
-				animals[i].code[index] = animals[i].code[index] + "g";
-
-			}
-			
-			//if answered no and this animal requires a yes here
-			else if(animals[i].code[index] == "1"){
-				//make red
-				animals[i].code[index] = animals[i].code[index] + "r";
-
-			}
-		}
+		// for(i=0; i<animals.length; i++){ //go through each animal
+// 			//if answered no and this animal requires a no here
+// 			if(animals[i].code[index] == "-1"){
+// 				//make green
+// 				animals[i].code[index] = animals[i].code[index] + "g";
+// 
+// 			}
+// 			
+// 			//if answered no and this animal requires a yes here
+// 			else if(animals[i].code[index] == "1"){
+// 				//make red
+// 				animals[i].code[index] = animals[i].code[index] + "r";
+// 
+// 			}
+// 		}
 		//update questions/answer
 		index = index*2 + 1;
 		
@@ -152,10 +176,6 @@
   		    document.getElementById("noButton").disabled = true;
 		}
 	}
-	
-
-	$("#noButton").click(noResponse);
-	$("#yesButton").click(yesResponse);
 
 
 </script>
