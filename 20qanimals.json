@@ -1,5 +1,5 @@
 { 
-"header" : ["big","cage","grass","meow","chirp","long neck","moo"],
+"header" : ["big","cage","grass","meow","chirp","longneck","moo"],
 		
 "animals" : [
 		{"name":"dog", "code":[-1,-1,0,-1,0,0,0]},

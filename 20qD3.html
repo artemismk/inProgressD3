@@ -55,10 +55,11 @@
 	d3.json("20qanimals.json", function(error, data){
 		animals = data.animals;
 		header = data.header;
-		//add index and onSymptom to animal data
+		//add index, confirmedWrong, and onSymptom to animal data
 		for(i=0; i<animals.length; i++){
 			animals[i].index = i;
 			animals[i].onSymptom = 0;
+			animals[i].confirmedWrong = false;
 		}
 				
 	var svg = d3.select("body").append("svg")
@@ -80,6 +81,7 @@
 		for(i=0; i<animals[0].code.length; i++){
 			svg.selectAll('g')	
 				.append('text')
+					.attr("class", function() {return header[i]})
 					.attr("x", function(d) {return 100 + (d.onSymptom*100)})
 					.attr("y", function(d) {return 15 + (d.index*20); })
 					.text( function (d) {
@@ -94,30 +96,14 @@
 	});
 	
 	function yesResponse() {
-		//for(i=0; i<animals.length; i++){
-			d3.select("svg").selectAll("g")
-				.selectAll("text")
-					.attr( "fill", function (d) {
-						if(d.code[index] == 1) {return "green"}
-						if(d.code[index] == -1){return "red"}
-			;})
-		//}
-	
 		// update visualization
-// 		for(i=0; i<animals.length; i++){ //go through each animal
-// 			if answered yes and this animal requires a no here
-// 			if(animals[i].code[index] == "-1"){
-// 				make red
-// 				animals[i].code[index] = animals[i].code[index] + "r";				
-// 			}
-// 			
-// 			if answered yes and this animal requires a yes here
-// 			else if(animals[i].code[index] == "1"){
-// 				make green
-// 				animals[i].code[index] = animals[i].code[index] + "g";
-// 			}
-// 		}
-// 	
+		d3.select("svg").selectAll("g")
+				.selectAll("."+ header[index])
+
+				.attr( "fill", function (d) {
+					if(d.code[index] == 1) {return "green"}
+					if((d.code[index] == -1) || d.confirmedWrong == true){d.confirmedWrong = true; return "red"}
+		;})
 
 		//update visualization
 		
@@ -137,31 +123,14 @@
 	}
 	
 	function noResponse() {
-		//for(i=0; i<animals.length; i++){
-			d3.select("svg").selectAll("g")
-				.selectAll("text")
-					.attr( "fill", function (d) {
-						if(d.code[index] == 1) {return "red"}
-						if(d.code[index] == -1){return "green"}
-			;})
-		//}
-	
 		//update visualization
-		// for(i=0; i<animals.length; i++){ //go through each animal
-// 			//if answered no and this animal requires a no here
-// 			if(animals[i].code[index] == "-1"){
-// 				//make green
-// 				animals[i].code[index] = animals[i].code[index] + "g";
-// 
-// 			}
-// 			
-// 			//if answered no and this animal requires a yes here
-// 			else if(animals[i].code[index] == "1"){
-// 				//make red
-// 				animals[i].code[index] = animals[i].code[index] + "r";
-// 
-// 			}
-// 		}
+		d3.select("svg").selectAll("g")
+				.selectAll("." + header[index])
+				.attr( "fill", function (d) {
+					if(d.code[index] == 1 || d.confirmedWrong == true) {d.confirmedWrong = true; return "red"}
+					if(d.code[index] == -1){return "green"}
+		;})
+	
 		//update questions/answer
 		index = index*2 + 1;
 		
