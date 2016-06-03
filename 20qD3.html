@@ -56,10 +56,9 @@
 	d3.json("20qanimals.json", function(error, data){
 		animals = data.animals;
 		header = data.header;
-		//drawText();
 		
 	var svg = d3.select("body").append("svg")
-		.attr("width",300)
+		.attr("width",900)
 		.attr("height",200);
 		
 	console.log(svg);
@@ -71,66 +70,27 @@
 			.append("text")
 				.attr("x", function(d) { return 10; })
 				.attr("y", function(d) { return 25+ (d.index*20); })
-				.text( function (d) { return d.name; })
+				.text( function (d) { return d.name + ":"; })
 				.attr("font-family", "sans-serif")
-				.attr("font-size", "18px")
+				.attr("font-size", "16px")
 				.attr("fill", "black");
-		svg.selectAll('g')	
-			.append('text')
-				.attr("x", function(d) {return 100})
-				.attr("y", function(d) {return 25+ (d.index*20); })
-				.text( function (d) {return d.code;})
-				.attr("font-family", "sans-serif")
-				.attr("font-size", "18px")
-				.attr("fill", "black");
+		for(i=0; i<animals[0].code.length; i++){
+			svg.selectAll('g')	
+				.append('text')
+					.attr("x", function(d) {return 100 + (i*120)})
+					.attr("y", function(d) {return 25+ (d.index*20); })
+					.text( function (d) {
+						if(d.code[i] == 0) {return ""}
+						if(d.code[i] == 1) {return header[i]}
+						if(d.code[i] == -1){return "not " + header[i]}
+					;})
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "16px")
+					.attr("fill", "black");
+		}
 	});
 	
 	
-	//get and print animal names
-	function drawText() {
-		//clear old text
-		text = '';
-			for(i=0; i<animals.length; i++){
-			text = text + animals[i].name + ": ";
-			//print all necessary symptoms the right color
-    			for(j=0; j<animals[i].code.length; j++){
-    			
-    				//needs to have NOT this symptom, hasn't been tested
-    				if(animals[i].code[j] == "-1") {
-    					text = text + "not " + header[j] + ", ";
-    				}
-    			
-    				//needs to have NOT this symptom, tested and failed
-    				if(animals[i].code[j] == "-1r") {
-    					text = text + "<font color='red'>" + "not " + header[j]+ "</font>" + ", ";
-    				}
-    			
-    				//needs to have NOT this symptom, tested and passed
-    				if(animals[i].code[j] == "-1g") {
-    					text = text + "<font color='green'>" + "not " + header[j]+ "</font>" + ", ";
-    				}
-    			
-    				//needs to have this symptom, hasn't been tested
-    				if(animals[i].code[j] == "1") {
-    					text = text + header[j] + ", ";
-    				}
-    			
-    				//needs to have this symptom, tested and failed
-    				if(animals[i].code[j] == "1r") {
-    					text = text + "<font color='red'>" + header[j]+ "</font>" + ", ";
-    				}
-    			
-    				//needs to have this symptom, tested and passed
-    				if(animals[i].code[j] == "1g") {
-    					text = text + "<font color='green'>" + header[j]+ "</font>" + ", ";
-    				}
-    			}
-    			text = text + "<br>";
-    		}
-    		document.getElementById("visualization").innerHTML = text;
-    		text = '';
-		}
-    
 	function yesResponse() {
 		//update visualization
 		for(i=0; i<animals.length; i++){ //go through each animal
@@ -159,8 +119,6 @@
   		    document.getElementById("yesButton").disabled = true;
   		    document.getElementById("noButton").disabled = true;
 		}
-		//redraw text
-		drawText();
 	}
 	
 	function noResponse() {
@@ -193,10 +151,6 @@
   		    document.getElementById("yesButton").disabled = true;
   		    document.getElementById("noButton").disabled = true;
 		}
-		
-		
-		//redraw text
-		drawText();
 	}
 	
 
