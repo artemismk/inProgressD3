@@ -50,6 +50,8 @@
 	var header; //= ["big","cage","grass","meow","chirp","long neck","moo"];
 	var animals;
 	var index = 0;
+	var numWrong = -1;
+	var onIndexWrong = 0;
 	
 	//import data
 	d3.json("20qanimals.json", function(error, data){
@@ -57,6 +59,7 @@
 		header = data.header;
 		//add index, provenWrong, and onSymptom to animal data
 		for(i=0; i<animals.length; i++){
+			animals[i].firstTime = true;
 			animals[i].index = i;
 			animals[i].provenWrong = false;
 			animals[i].onSymptom = 0;
@@ -107,7 +110,6 @@
 	function yesResponse() {
 	
 		var onIndexPoss = 0;
-		var onIndexWrong = 0;
 		
 		// update visualization
 		
@@ -117,7 +119,7 @@
 
 				.attr( "fill", function (d) {
 					if(d.code[index] == 1) {return "green"}
-					if(d.code[index] == -1){d.provenWrong = true; return "red"}
+					if(d.code[index] == -1){d.provenWrong = true; numWrong++; return "red"}
 		;})
 		
 		for(i=0;i<animals.length;i++){
@@ -135,16 +137,19 @@
 						return "translate(0," + (15 + (d.index*20)-currenty) + ")"});
 			}
 			if(animals[i].provenWrong){
-				//reindex
-				animals[i].index = onIndexWrong;
-				onIndexWrong++;
+				if(animals[i].firstTime){
+					//reindex
+					animals[i].index = onIndexWrong;
+					onIndexWrong++;
+					animals[i].firstTime = false;
+				}
 				//transition
 				var g = d3.select("svg").select("#" + animals[i].name);
 				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
 				g.transition()
 						.duration(750)
 						.attr("transform", function(d){ 						
-						return "translate(450," + (15 + (d.index*20)-currenty) + ")"});		
+						return "translate(450," + (15 + ((numWrong-d.index)*20)-currenty) + ")"});		
 			}
 		}
 		
@@ -169,9 +174,7 @@
 	
 	function noResponse() {
 	
-		var onIndexPoss = 0;
-		var onIndexWrong = 0;
-		
+		var onIndexPoss = 0;		
 		
 		//update visualization
 		
@@ -179,7 +182,7 @@
 		d3.select("svg").selectAll("g")
 				.selectAll("." + header[index])
 				.attr( "fill", function (d) {
-					if(d.code[index] == 1) {d.provenWrong = true; return "red"}
+					if(d.code[index] == 1) {d.provenWrong = true; numWrong++; return "red"}
 					if(d.code[index] == -1){return "green"}
 		;})
 		
@@ -197,16 +200,19 @@
 						return "translate(0," + (15 + (d.index*20)-currenty) + ")"});
 			}
 			if(animals[i].provenWrong){
-				//reindex
-				animals[i].index = onIndexWrong;
-				onIndexWrong++;
+				if(animals[i].firstTime){
+					//reindex
+					animals[i].index = onIndexWrong;
+					onIndexWrong++;
+					animals[i].firstTime = false;
+				}
 				//transition
 				var g = d3.select("svg").select("#" + animals[i].name);
 				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
 				g.transition()
 					.duration(750)
 					.attr("transform", function(d){ 						
-					return "translate(450," + (15 + (d.index*20)-currenty) + ")"});		
+					return "translate(450," + (15 + ((numWrong-d.index)*20)-currenty) + ")"});		
 			}
 		}
 		
