@@ -27,8 +27,6 @@
 	
 	<p id= "answer" class = "parag"></p>
 	
-	<div id="possibilities"> </div>
-	<div id="incorrect"> </div>
 	
 	
 	<script>
@@ -65,32 +63,31 @@
 		}
 	
 	//create SVG container			
-	var svg1 = d3.select("#possibilities").append("svg")
-		.attr("width",400)
-		.attr("height",200);
+	var svg = d3.select("body").append("svg")
+		.attr("width",900)
+		.attr("height",300);
 	
-	var svg2 = d3.select("#incorrect").append("svg")
-		.attr("width", 400)
-		.attr("height",200);
 	//create name elements	
-	svg1.selectAll("g")
+	svg.selectAll("g")
 	.data(animals)
 		.enter()
-		.append('g')
-			.attr("id", function(d) {return d.name})
-			.append("text")
-				.attr("x", function(d) { return 10; })
-				.attr("y", function(d) { return 15 + (d.index*20); })
-				.text( function (d) { 
-					if(!d.provenWrong) {return d.name + ":"} 
-					else {return ""}
+			.append("g")
+				.attr("id", function(d) {return d.name})
+				.append("text")
+					.attr("class", function(d) {return d.name + "Only";})
+					.attr("x", function(d) { return 10; })
+					.attr("y", function(d) { return 15 + (d.index*20); })
+					.text( function (d) { 
+						if(!d.provenWrong) {return d.name + ":"} 
+						else {return ""}
 					;})
-				.attr("font-family", "sans-serif")
-				.attr("font-size", "14px")
-				.attr("fill", "black");
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "14px")
+					.attr("fill", "black");
+					
 		//create symptom elements
 		for(i=0; i<animals[0].code.length; i++){
-			svg1.selectAll('g')	
+			svg.selectAll('g')	
 				.append('text')
 					.attr("class", function() {return header[i]})
 					.attr("x", function(d) {return 100 + (d.onSymptom*100)})
@@ -106,9 +103,16 @@
 		}
 	});
 	
+	
 	function yesResponse() {
+	
+		var onIndexPoss = 0;
+		var onIndexWrong = 0;
+		
 		// update visualization
-		d3.select("#possibilities").select("svg").selectAll("g")
+		
+		//change color
+		d3.select("svg").selectAll("g")
 				.selectAll("."+ header[index])
 
 				.attr( "fill", function (d) {
@@ -117,11 +121,33 @@
 		;})
 		
 		for(i=0;i<animals.length;i++){
+			if(! animals[i].provenWrong){
+				//reindex
+				animals[i].index = onIndexPoss;
+				onIndexPoss++;
+				//transition
+				var g = d3.select("svg").select("#" + animals[i].name);
+				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
+				//var currenty = d3.transform(g.attr("transform")).translate[1];
+				g.transition()
+						.duration(750)
+						.attr("transform", function(d){ 						
+						return "translate(0," + (15 + (d.index*20)-currenty) + ")"});
+			}
 			if(animals[i].provenWrong){
-				d3.select("#possibilities").select("svg").select("#" + animals[i].name)
-					.remove();
+				//reindex
+				animals[i].index = onIndexWrong;
+				onIndexWrong++;
+				//transition
+				var g = d3.select("svg").select("#" + animals[i].name);
+				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
+				g.transition()
+						.duration(750)
+						.attr("transform", function(d){ 						
+						return "translate(450," + (15 + (d.index*20)-currenty) + ")"});		
 			}
 		}
+		
 		
 
 		//update visualization
@@ -142,8 +168,15 @@
 	}
 	
 	function noResponse() {
+	
+		var onIndexPoss = 0;
+		var onIndexWrong = 0;
+		
+		
 		//update visualization
-		d3.select("#possibilities").select("svg").selectAll("g")
+		
+		//change color
+		d3.select("svg").selectAll("g")
 				.selectAll("." + header[index])
 				.attr( "fill", function (d) {
 					if(d.code[index] == 1) {d.provenWrong = true; return "red"}
@@ -151,11 +184,32 @@
 		;})
 		
 		for(i=0;i<animals.length;i++){
+			if(! animals[i].provenWrong){
+				//reindex
+				animals[i].index = onIndexPoss;
+				onIndexPoss++;
+				//transition
+				var g = d3.select("svg").select("#" + animals[i].name);
+				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
+				g.transition()
+						.duration(750)
+						.attr("transform", function(d){ 						
+						return "translate(0," + (15 + (d.index*20)-currenty) + ")"});
+			}
 			if(animals[i].provenWrong){
-				d3.select("#possibilities").select("svg").select("#" + animals[i].name)
-					.remove();
+				//reindex
+				animals[i].index = onIndexWrong;
+				onIndexWrong++;
+				//transition
+				var g = d3.select("svg").select("#" + animals[i].name);
+				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
+				g.transition()
+					.duration(750)
+					.attr("transform", function(d){ 						
+					return "translate(450," + (15 + (d.index*20)-currenty) + ")"});		
 			}
 		}
+		
 	
 		//update questions/answer
 		index = index*2 + 1;
