@@ -10,10 +10,6 @@
 		font-size: 18px;
 	}
 
-	#visualization {
-		font-size: 16px;
-	}
-	
 </style>
 	
 <body>
@@ -27,17 +23,13 @@
 	
 	<p id= "answer" class = "parag"></p>
 	
-	
-	
 	<script>
-	
-	//DOG, CAT, HAMSTER, BIRD, BEAR, GIRAFFE, HORSE, COW
-	
 	
 	//set up tree
 	var qas = [];
 
-	d3.csv("20qtree.csv", function(data) {
+	//d3.csv("20qtree.csv", function(data) {
+	d3.csv("symptomsTree.csv", function(data){
 		//put data into array
   		for(i = 0; i<data.length;i++){
   			qas.push(data[i].questions);
@@ -47,38 +39,42 @@
 
 	
 	//set up visualization
-	var header; //= ["big","cage","grass","meow","chirp","long neck","moo"];
-	var animals;
+	var header; 
+	var symptoms;
 	var index = 0;
 	var numWrong = -1;
 	var onIndexWrong = 0;
+	var onIndexCorrect = 0;
 	
 	//import data
-	d3.json("20qanimals.json", function(error, data){
-		animals = data.animals;
+	//d3.json("20qanimals.json", function(error, data){
+	d3.json("symptoms.json", function(error, data){
 		header = data.header;
-		//add index, provenWrong, and onSymptom to animal data
-		for(i=0; i<animals.length; i++){
-			animals[i].firstTime = true;
-			animals[i].index = i;
-			animals[i].provenWrong = false;
-			animals[i].onSymptom = 0;
+		symptoms = data.symptoms;
+		//add firstTimeWrong, firstTimeCorrect, index, provenWrong, possibleRight, and onSymptom to animal data
+		for(i=0; i<symptoms.length; i++){
+			symptoms[i].firstTimeWrong = true;
+			symptoms[i].firstTimeCorrect = true;
+			symptoms[i].index = i;
+			symptoms[i].possibleRight = false;
+			symptoms[i].provenWrong = false;
+			symptoms[i].onSymptom = 0;
 		}
 	
 	//create SVG container			
 	var svg = d3.select("body").append("svg")
-		.attr("width",900)
+		.attr("width",1000)
 		.attr("height",300);
 	
 	//create name elements	
 	svg.selectAll("g")
-	.data(animals)
+	.data(symptoms)
 		.enter()
 			.append("g")
 				.attr("id", function(d) {return d.name})
 				.append("text")
 					.attr("class", function(d) {return d.name + "Only";})
-					.attr("x", function(d) { return 10; })
+					.attr("x", function(d) { return 400; })
 					.attr("y", function(d) { return 15 + (d.index*20); })
 					.text( function (d) { 
 						if(!d.provenWrong) {return d.name + ":"} 
@@ -89,11 +85,11 @@
 					.attr("fill", "black");
 					
 		//create symptom elements
-		for(i=0; i<animals[0].code.length; i++){
+		for(i=0; i<symptoms[0].code.length; i++){
 			svg.selectAll('g')	
 				.append('text')
 					.attr("class", function() {return header[i]})
-					.attr("x", function(d) {return 100 + (d.onSymptom*100)})
+					.attr("x", function(d) {return 450 + (d.onSymptom*100)})
 					.attr("y", function(d) {return 15 + (d.index*20); })
 					.text( function (d) {
 						if(d.code[i] == 0) {return ""}
@@ -108,61 +104,34 @@
 	
 	
 	function yesResponse() {
-	
-		var onIndexPoss = 0;
-		
 		// update visualization
 		
-		//change color
-		d3.select("svg").selectAll("g")
+		d3.select("svg").selectAll("g") //change color
 				.selectAll("."+ header[index])
 
 				.attr( "fill", function (d) {
-					if(d.code[index] == 1) {return "green"}
-					if(d.code[index] == -1){d.provenWrong = true; numWrong++; return "red"}
+					if(d.code[index] == 1) {
+						d.possibleRight = true;
+						return "green"
+					}
+					if(d.code[index] == -1){
+						d.provenWrong = true; 
+						d.possibleRight = false;
+						numWrong++; 
+						return "red";
+					}
 		;})
 		
-		for(i=0;i<animals.length;i++){
-			if(! animals[i].provenWrong){
-				//reindex
-				animals[i].index = onIndexPoss;
-				onIndexPoss++;
-				//transition
-				var g = d3.select("svg").select("#" + animals[i].name);
-				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
-				//var currenty = d3.transform(g.attr("transform")).translate[1];
-				g.transition()
-						.duration(750)
-						.attr("transform", function(d){ 						
-						return "translate(0," + (15 + (d.index*20)-currenty) + ")"});
-			}
-			if(animals[i].provenWrong){
-				if(animals[i].firstTime){
-					//reindex
-					animals[i].index = onIndexWrong;
-					onIndexWrong++;
-					animals[i].firstTime = false;
-				}
-				//transition
-				var g = d3.select("svg").select("#" + animals[i].name);
-				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
-				g.transition()
-						.duration(750)
-						.attr("transform", function(d){ 						
-						return "translate(450," + (15 + ((numWrong-d.index)*20)-currenty) + ")"});		
-			}
-		}
-		
-		
-
-		//update visualization
-		
-
+		reIndexandTransition();
+				
+		//update question
 		index = index*2 + 2;
 
-		if (index < (qas.length-1)/2) { //where answers start
+		if (index < (qas.length-1)/2 && (qas[index*2+1] != "-")) { //less than where final answer line is, and has children
 			document.getElementById("question").innerHTML = qas[index];
 		}
+		
+		//got to one answer
 		else {
 			document.getElementById("question").innerHTML = "";
 			//show answer
@@ -173,56 +142,32 @@
 	}
 	
 	function noResponse() {
-	
-		var onIndexPoss = 0;		
-		
 		//update visualization
-		
-		//change color
-		d3.select("svg").selectAll("g")
+				
+		d3.select("svg").selectAll("g") //change color
 				.selectAll("." + header[index])
 				.attr( "fill", function (d) {
-					if(d.code[index] == 1) {d.provenWrong = true; numWrong++; return "red"}
-					if(d.code[index] == -1){return "green"}
+					if(d.code[index] == 1) {
+						d.provenWrong = true;
+						d.possibleRight = false;
+						numWrong++;
+						return "red";
+					}
+					if(d.code[index] == -1){
+						possibleRight = true;
+						return "green";
+					}
 		;})
 		
-		for(i=0;i<animals.length;i++){
-			if(! animals[i].provenWrong){
-				//reindex
-				animals[i].index = onIndexPoss;
-				onIndexPoss++;
-				//transition
-				var g = d3.select("svg").select("#" + animals[i].name);
-				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
-				g.transition()
-						.duration(750)
-						.attr("transform", function(d){ 						
-						return "translate(0," + (15 + (d.index*20)-currenty) + ")"});
-			}
-			if(animals[i].provenWrong){
-				if(animals[i].firstTime){
-					//reindex
-					animals[i].index = onIndexWrong;
-					onIndexWrong++;
-					animals[i].firstTime = false;
-				}
-				//transition
-				var g = d3.select("svg").select("#" + animals[i].name);
-				var currenty = d3.select("svg").select("."+animals[i].name + "Only").attr("y");
-				g.transition()
-					.duration(750)
-					.attr("transform", function(d){ 						
-					return "translate(450," + (15 + ((numWrong-d.index)*20)-currenty) + ")"});		
-			}
-		}
-		
+		reIndexandTransition();
 	
-		//update questions/answer
+		//update questions
 		index = index*2 + 1;
 		
-		if (index < (qas.length-1) /2) { //where answers start
+		if (index < (qas.length-1)/2 && (qas[index*2+1] != "-")) { //less than where final answer line is, and has children
 			document.getElementById("question").innerHTML = qas[index];
 		}
+		//got to answer
 		else {
 			document.getElementById("question").innerHTML = "";
 			//show answer
@@ -231,7 +176,57 @@
   		    document.getElementById("noButton").disabled = true;
 		}
 	}
-
+	
+	function reIndexandTransition() {
+		var onIndexCenter = 0;		
+	
+		for(i=0;i<symptoms.length;i++){
+			//go right
+			if(symptoms[i].provenWrong){
+				//reindex
+				if(symptoms[i].firstTimeWrong){
+					symptoms[i].index = onIndexWrong;
+					onIndexWrong++;
+					symptoms[i].firstTimeWrong = false;
+				}
+				//transition
+				var g = d3.select("svg").select("#" + symptoms[i].name);
+				var currenty = d3.select("svg").select("."+symptoms[i].name + "Only").attr("y");
+				g.transition()
+						.duration(750)
+						.attr("transform", function(d){ 						
+						return "translate(300," + (15 + ((numWrong-d.index)*20)-currenty) + ")"});		
+			}
+			//go left
+			else if(symptoms[i].possibleRight){
+				//reindex
+				if(symptoms[i].firstTimeCorrect){
+					symptoms[i].index = onIndexCorrect;
+					onIndexCorrect++;
+					symptoms[i].firstTimeCorrect = false;
+				}
+				//transition
+				var g = d3.select("svg").select("#" + symptoms[i].name);
+				var currenty = d3.select("svg").select("."+symptoms[i].name + "Only").attr("y");
+				g.transition()
+						.duration(750)
+						.attr("transform", function(d){ 						
+						return "translate(-350," + (15 + ((d.index)*20)-currenty) + ")"});
+			}
+			//no info, stay center
+			else{
+				//reindex
+				symptoms[i].index = onIndexCenter;
+				onIndexCenter++;
+				//transition
+				var g = d3.select("svg").select("#" + symptoms[i].name);
+				var currenty = d3.select("svg").select("."+symptoms[i].name + "Only").attr("y");				g.transition()
+						.duration(750)
+						.attr("transform", function(d){ 						
+						return "translate(0," + (15 + (d.index*20)-currenty) + ")"});
+			}
+		}
+	}
 
 </script>
 </html>
