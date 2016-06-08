@@ -9,19 +9,55 @@
 		font-family: sans-serif;
 		font-size: 18px;
 	}
+	#symptoms {
+		font-family: sans-serif;
+		font-size: 15px;
+	}
+	div.questionD {
+		float: left;
+		position: relative;
+    	left: 10px;
+    	width:400px;
+    	height: 60px;
+	}
+	div.buttonD {
+		position: relative;
+		left: 170px;
+		width: 70px;
+	}
+	div.symptomsD {
+		float:right;
+		text-align: right;
+		padding-right: 30px;
+	}
+	div.answerD {
+		float: left;
+		position: relative;
+    	left: 10px;
+    	width:400px;
+    	height: 60px;
+	}
 
 </style>
 	
 <body>
 
-	<p id="question" class = "parag"></p> 
+	<div class = "questionD">
+	<center><p id="question" class = "parag"></p></center>
+	</div> 
 	
-	<div>
+	<div class="symptomsD">
+	<p id="symptoms"></p>
+	</div>
+	
+	<div class = "buttonD">
 		<button class="button" onClick = "yesResponse()" id="yesButton">Yes</button>
 		<button class="button"  onClick = "noResponse()" id="noButton">No</button>
 	</div>
 	
-	<p id= "answer" class = "parag"></p>
+	<div class = "answerD">
+	<center><p id= "answer" class = "parag"></p></center>
+	</div>
 	
 	<script>
 	
@@ -40,35 +76,37 @@
 	
 	//set up visualization
 	var header; 
-	var symptoms;
+	var diagnoses;
 	var index = 0;
 	var numWrong = -1;
 	var onIndexWrong = 0;
-	var onIndexCorrect = 0;
+	var symptomText = "<em>Log of Symptoms:</em> <br>";
+	
+	document.getElementById("symptoms").innerHTML = symptomText;
 	
 	//import data
 	//d3.json("20qanimals.json", function(error, data){
 	d3.json("symptoms.json", function(error, data){
 		header = data.header;
-		symptoms = data.symptoms;
+		diagnoses = data.diagnoses;
 		//add firstTimeWrong, firstTimeCorrect, index, provenWrong, possibleRight, and onSymptom to animal data
-		for(i=0; i<symptoms.length; i++){
-			symptoms[i].firstTimeWrong = true;
-			symptoms[i].firstTimeCorrect = true;
-			symptoms[i].index = i;
-			symptoms[i].possibleRight = false;
-			symptoms[i].provenWrong = false;
-			symptoms[i].onSymptom = 0;
+		for(i=0; i<diagnoses.length; i++){
+			diagnoses[i].firstTimeWrong = true;
+			//diagnoses[i].firstTimeCorrect = true;
+			diagnoses[i].index = i;
+			diagnoses[i].possibleRight = false;
+			diagnoses[i].provenWrong = false;
+			diagnoses[i].onSymptom = 0;
 		}
 	
 	//create SVG container			
 	var svg = d3.select("body").append("svg")
 		.attr("width",1000)
-		.attr("height",300);
+		.attr("height",500);
 	
 	//create name elements	
 	svg.selectAll("g")
-	.data(symptoms)
+	.data(diagnoses)
 		.enter()
 			.append("g")
 				.attr("id", function(d) {return d.name})
@@ -85,11 +123,11 @@
 					.attr("fill", "black");
 					
 		//create symptom elements
-		for(i=0; i<symptoms[0].code.length; i++){
+		for(i=0; i<diagnoses[0].code.length; i++){
 			svg.selectAll('g')	
 				.append('text')
 					.attr("class", function() {return header[i]})
-					.attr("x", function(d) {return 450 + (d.onSymptom*100)})
+					.attr("x", function(d) {return 450 + (d.onSymptom*75)})
 					.attr("y", function(d) {return 15 + (d.index*20); })
 					.text( function (d) {
 						if(d.code[i] == 0) {return ""}
@@ -105,7 +143,6 @@
 	
 	function yesResponse() {
 		// update visualization
-		
 		d3.select("svg").selectAll("g") //change color
 				.selectAll("."+ header[index])
 
@@ -121,6 +158,10 @@
 						return "red";
 					}
 		;})
+		
+		//log question and answer
+		symptomText = symptomText + "Problems with " + header[index] + "<br>";
+		document.getElementById("symptoms").innerHTML = symptomText;
 		
 		reIndexandTransition();
 				
@@ -159,6 +200,10 @@
 					}
 		;})
 		
+		//log question and answer
+		symptomText = symptomText + "No problems with " + header[index] + "<br>";
+		document.getElementById("symptoms").innerHTML = symptomText;
+		
 		reIndexandTransition();
 	
 		//update questions
@@ -178,36 +223,34 @@
 	}
 	
 	function reIndexandTransition() {
-		var onIndexCenter = 0;		
+		var onIndexCenter = 0;
+		var onIndexCorrect = 0;		
 	
-		for(i=0;i<symptoms.length;i++){
+		for(i=0;i<diagnoses.length;i++){
 			//go right
-			if(symptoms[i].provenWrong){
+			if(diagnoses[i].provenWrong){
 				//reindex
-				if(symptoms[i].firstTimeWrong){
-					symptoms[i].index = onIndexWrong;
+				if(diagnoses[i].firstTimeWrong){
+					diagnoses[i].index = onIndexWrong;
 					onIndexWrong++;
-					symptoms[i].firstTimeWrong = false;
+					diagnoses[i].firstTimeWrong = false;
 				}
 				//transition
-				var g = d3.select("svg").select("#" + symptoms[i].name);
-				var currenty = d3.select("svg").select("."+symptoms[i].name + "Only").attr("y");
+				var g = d3.select("svg").select("#" + diagnoses[i].name);
+				var currenty = d3.select("svg").select("."+diagnoses[i].name + "Only").attr("y");
 				g.transition()
 						.duration(750)
 						.attr("transform", function(d){ 						
 						return "translate(300," + (15 + ((numWrong-d.index)*20)-currenty) + ")"});		
 			}
 			//go left
-			else if(symptoms[i].possibleRight){
+			else if(diagnoses[i].possibleRight){
 				//reindex
-				if(symptoms[i].firstTimeCorrect){
-					symptoms[i].index = onIndexCorrect;
-					onIndexCorrect++;
-					symptoms[i].firstTimeCorrect = false;
-				}
+				diagnoses[i].index = onIndexCorrect;
+				onIndexCorrect++;
 				//transition
-				var g = d3.select("svg").select("#" + symptoms[i].name);
-				var currenty = d3.select("svg").select("."+symptoms[i].name + "Only").attr("y");
+				var g = d3.select("svg").select("#" + diagnoses[i].name);
+				var currenty = d3.select("svg").select("."+diagnoses[i].name + "Only").attr("y");
 				g.transition()
 						.duration(750)
 						.attr("transform", function(d){ 						
@@ -216,11 +259,11 @@
 			//no info, stay center
 			else{
 				//reindex
-				symptoms[i].index = onIndexCenter;
+				diagnoses[i].index = onIndexCenter;
 				onIndexCenter++;
 				//transition
-				var g = d3.select("svg").select("#" + symptoms[i].name);
-				var currenty = d3.select("svg").select("."+symptoms[i].name + "Only").attr("y");				g.transition()
+				var g = d3.select("svg").select("#" + diagnoses[i].name);
+				var currenty = d3.select("svg").select("."+diagnoses[i].name + "Only").attr("y");				g.transition()
 						.duration(750)
 						.attr("transform", function(d){ 						
 						return "translate(0," + (15 + (d.index*20)-currenty) + ")"});

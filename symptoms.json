@@ -1,7 +1,7 @@
 { "header" : ["feeling", "adl", "behavior", "delusion", "attachment", "memory", "eating",
-"attention", "N/A", "cog.dev", "N/A", "hallucination", "sleep", "N/A", "N/A"],
+"attention", "N/A", "cogdev", "N/A", "hallucination", "sleep", "N/A", "N/A"],
 		
-"symptoms" : [
+"diagnoses" : [
 		{"name":"ch1", "code":[0,1,0,0,0,0,0,0,5,1,5,0,0,5,5]},
     	{"name":"ch2", "code":[0,0,0,1,0,0,0,0,5,0,5,0,0,5,5]},
     	{"name":"ch5", "code":[1,0,1,0,0,0,0,0,5,0,5,0,0,5,5]},
