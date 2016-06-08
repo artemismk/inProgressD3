@@ -17,26 +17,21 @@
 		float: left;
 		position: relative;
     	left: 10px;
-    	width:400px;
+    	width:500px;
     	height: 60px;
 	}
 	div.buttonD {
 		position: relative;
-		left: 170px;
+		left: 220px;
 		width: 70px;
 	}
 	div.symptomsD {
 		float:right;
 		text-align: right;
 		padding-right: 30px;
+		height: 150px;
 	}
-	div.answerD {
-		float: left;
-		position: relative;
-    	left: 10px;
-    	width:400px;
-    	height: 60px;
-	}
+
 
 </style>
 	
@@ -174,9 +169,8 @@
 		
 		//got to one answer
 		else {
-			document.getElementById("question").innerHTML = "";
 			//show answer
-			document.getElementById("answer").innerHTML = "<strong>" + qas[index] + "</strong>";
+			document.getElementById("question").innerHTML = "<strong>" + qas[index] + "</strong>";
   		    document.getElementById("yesButton").disabled = true;
   		    document.getElementById("noButton").disabled = true;
 		}
@@ -196,6 +190,8 @@
 					}
 					if(d.code[index] == -1){
 						possibleRight = true;
+						d.index = onIndexCorrect;
+						onIndexCorrect++;
 						return "green";
 					}
 		;})
@@ -214,9 +210,8 @@
 		}
 		//got to answer
 		else {
-			document.getElementById("question").innerHTML = "";
 			//show answer
-			document.getElementById("answer").innerHTML = "<strong>" + qas[index] + "</strong>";
+			document.getElementById("question").innerHTML = "<strong>" + qas[index] + "</strong>";
   		    document.getElementById("yesButton").disabled = true;
   		    document.getElementById("noButton").disabled = true;
 		}
