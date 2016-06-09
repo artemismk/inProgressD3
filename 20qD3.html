@@ -94,11 +94,12 @@
 			diagnoses[i].possibleRight = false; //indicates element belongs in correct group
 			diagnoses[i].provenWrong = false; //indicates element belongs in wrong group
 			diagnoses[i].onSymptom = 0; //to prevent gaps between symptoms list
+			diagnoses[i].numCondMet = 0; //to index correct elements by most to least likely
 		}
 	
 	//create SVG container			
 	var svg = d3.select("body").append("svg")
-		.attr("width",1000)
+		.attr("width",1500)
 		.attr("height",500);
 	
 	//create name elements	
@@ -107,9 +108,10 @@
 		.enter()
 			.append("g")
 				.attr("id", function(d) {return d.name})
-				.on("click", function(d) { window.open("http://dsm.psychiatryonline.org/doi/full/10.1176/appi.books.9780890425596.dsm"+d.link); })
+				//.on("click", function(d) { window.open("http://dsm.psychiatryonline.org/doi/full/10.1176/appi.books.9780890425596.dsm"+d.link); })
 				.append("text")
 					.attr("class", function(d) {return d.name + "Only";})
+					.on("click", function(d) { window.open("http://dsm.psychiatryonline.org/doi/full/10.1176/appi.books.9780890425596.dsm"+d.link); })
 					.attr("x", function(d) { return 400; })
 					.attr("y", function(d) { return 15 + (d.index*20); })
 					.text( function (d) { 
@@ -117,6 +119,7 @@
 						else {return ""}
 					;})
 					.attr("font-family", "sans-serif")
+					.attr("text-decoration", "underline")
 					.attr("font-size", "14px")
 					.attr("fill", "black");
 					
@@ -144,21 +147,26 @@
 		d3.select("svg").selectAll("g") //change color
 				.selectAll("."+ header[index])
 
-				.attr( "fill", function (d) {
+				.attr( "text-decoration", function (d) {
 					if(d.code[index] == 1) {
 						d.possibleRight = true;
 						d.index = onIndexCorrect;
 						onIndexCorrect++;
+						d.numCondMet++;
 						d.beenIndexed = true;
-						return "green"
+						return "none"
 					}
 					if(d.code[index] == -1){
 						d.provenWrong = true; 
 						d.possibleRight = false;
 						numWrong++; 
-						return "red";
+						return "line-through";
 					}
-		;})
+				;})
+				.attr("font-weight", function(d) {
+					if(d.possibleRight){ return "bold";}
+					if(d.provenWrong) {return "none";}
+				;});
 		
 		//log question and answer
 		symptomText = symptomText + "Problems with " + header[index] + "<br>";
@@ -187,19 +195,20 @@
 				
 		d3.select("svg").selectAll("g") //change color
 				.selectAll("." + header[index])
-				.attr( "fill", function (d) {
+				.attr( "text-decoration", function (d) {
 					if(d.code[index] == 1) {
 						d.provenWrong = true;
 						d.possibleRight = false;
 						numWrong++;
-						return "red";
+						return "line-through";
 					}
 					if(d.code[index] == -1){
 						possibleRight = true;
 						d.index = onIndexCorrect;
 						onIndexCorrect++;
+						d.numCondMet ++;
 						d.beenIndexed = true;
-						return "green";
+						return "none";
 					}
 		;})
 		
@@ -226,7 +235,8 @@
 	
 	function reIndexandTransition() {
 		var onIndexCenter = 0;
-	
+		var correctArray = [];
+
 		for(i=0;i<diagnoses.length;i++){
 			//go right
 			if(diagnoses[i].provenWrong){
@@ -242,10 +252,14 @@
 				g.transition()
 						.duration(750)
 						.attr("transform", function(d){ 						
-						return "translate(375," + (15 + ((numWrong-d.index)*20)-currenty) + ")"});		
+						return "translate(350," + (15 + ((numWrong-d.index)*20)-currenty) + ")"});		
 			}
+						
 			//go left
 			else if(diagnoses[i].possibleRight){
+				var toAdd = [diagnoses[i].name, parseInt(diagnoses[i].numCondMet)];
+				correctArray.push(toAdd);
+				
 				if(! diagnoses[i].beenIndexed){
 					//reindex
 					diagnoses[i].index = onIndexCorrect;
@@ -264,8 +278,11 @@
 						.attr("transform", function(d){ 						
 						return "translate(-370," + (15 + ((d.index)*20)-currenty) + ")"});
 			}
+			
+			
 			//no info, stay center
 			else{
+			
 				//reindex
 				diagnoses[i].index = onIndexCenter;
 				onIndexCenter++;
@@ -279,6 +296,13 @@
 		}
 		//clear onIndexCorrect
 		onIndexCorrect = 0;
+
+		// Sort the array based on the second element
+		correctArray.sort(function(a, b) {
+   			 return a[1]-b[1];
+		});
+		correctArray.reverse();
+		console.log(correctArray);
 	}
 
 </script>
