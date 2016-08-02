@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="//d3js.org/d3.v3.min.js"></script>
+</head>
+
+<style>
+	.parag {
+		font-family: sans-serif;
+		font-size: 18px;
+	}
+	#symptoms {
+		font-family: sans-serif;
+		font-size: 15px;
+	}
+	div.questionD {
+		float: left;
+		position: relative;
+    	left: 10px;
+    	width:500px;
+    	height: 60px;
+	}
+	div.buttonD {
+		position: relative;
+		left: 220px;
+		width: 70px;
+	}
+	div.symptomsD {
+		float:right;
+		text-align: right;
+		padding-right: 30px;
+		height: 150px;
+	}
+
+
+</style>
+	
+<body>
+
+	<div class = "questionD">
+	<center><p id="question" class = "parag"></p></center>
+	</div> 
+	
+	<div class="symptomsD">
+	<p id="symptoms"></p>
+	</div>
+	
+	<div class = "buttonD">
+		<button class="button" onClick = "yesResponse()" id="yesButton">Yes</button>
+		<button class="button"  onClick = "noResponse()" id="noButton">No</button>
+	</div>
+	
+	<div class = "answerD">
+	<center><p id= "answer" class = "parag"></p></center>
+	</div>
+	
+	<script>
+
+	
+	
+	//import tree data
+	d3.json("TreeRawData.json", function(error, data){
+		root = data;
+		document.getElementById("question").innerHTML = "Does the patient display problems with" + root.rule;
+	});
+	
+	var root;
+	var header; 
+	var diagnoses;
+	var numChapters = 19;
+	var chapterOrg = [];
+	//var numWrong = -1;
+	//var onIndexWrong = 0;
+	//var onIndexCorrect = 0;
+	var symptomText = "<em>Log of Symptoms:</em> <br>";
+	
+	document.getElementById("symptoms").innerHTML = symptomText;
+
+	//import code data
+	d3.json("codesShort.json", function(error, data){
+		header = data.header;
+		diagnoses = data.diagnoses;
+		
+		for(i=0; i<diagnoses.length; i++){
+			diagnoses[i].size = 50;
+						
+			// diagnoses[i].firstTimeWrong = true; //used to index wrong elements
+// 			diagnoses[i].index = i;
+// 			diagnoses[i].possibleRight = false; //indicates element belongs in correct group
+// 			diagnoses[i].provenWrong = false; //indicates element belongs in wrong group
+// 			diagnoses[i].onSymptom = 0; //to prevent gaps between symptoms list
+// 			diagnoses[i].numCondMet = 0; //to index correct elements by most to least likely
+		}
+		
+		//organize all diagnoses by chapter
+		var tempChapterArr = [];
+		for(i=0; i<numChapters+1; i++){
+			for(j=0; j<diagnoses.length; j++){
+				if(diagnoses[j].chapter == i){
+					tempChapterArr.push(diagnoses[j]);
+				}
+			}
+			chapterOrg.push(tempChapterArr);
+			tempChapterArr = [];
+		}
+		console.log(chapterOrg);
+	
+		//create SVG container			
+		var svg = d3.select("body").append("svg")
+			.attr("width",1500)
+			.attr("height",500);
+		
+		//create name elements	
+		svg.selectAll("g")
+			.data(diagnoses)
+			.enter()
+				.append("g")
+					.attr("id", function(d) {return d.name})
+					.append("text");
+						
+		// create symptom elements
+// 		for(i=0; i<diagnoses[0].code.length; i++){
+// 			svg.selectAll('g')	
+// 				.append('text')
+// 					.attr("class", function() {return header[i]})
+// 					.attr("x", function(d) {return 500 + (d.onSymptom*100)})
+// 					.attr("y", function(d) {return 15 + (d.index*20); })
+// 					.text( function (d) {
+// 						if(d.code[i] == 0) {return ""}
+// 						if(d.code[i] == 1) {d.onSymptom++; return header[i]}
+// 						if(d.code[i] == -1){d.onSymptom++; return "not " + header[i]}
+// 					;})
+// 					.attr("font-family", "sans-serif")
+// 					.attr("font-size", "14px")
+// 					.attr("fill", "black");
+// 		}
+	});
+	
+	
+	function yesResponse() {
+			root = root.left;
+			document.getElementById("question").innerHTML = "Does the patient display problems with" + root.rule;
+			//update log
+			symptomText = symptomText + "Problems with" + root.rule + "<br>";
+			if(!root.right){
+				document.getElementById("question").innerHTML = root.id;
+				document.getElementById("yesButton").disabled = true;
+  		  	    document.getElementById("noButton").disabled = true;
+			}
+			else{
+				document.getElementById("symptoms").innerHTML = symptomText;
+			}
+
+		
+	}
+	
+	function noResponse() {
+			root = root.right;
+			document.getElementById("question").innerHTML = "Does the patient display problems with" + root.rule;
+			//update log
+			symptomText = symptomText + "No problems with" + root.rule + "<br>";
+			if(!root.right){
+				document.getElementById("question").innerHTML = root.id;
+				document.getElementById("yesButton").disabled = true;
+  		  	    document.getElementById("noButton").disabled = true;
+			}
+			else{
+				document.getElementById("symptoms").innerHTML = symptomText;
+			}
+	}
+
+</script>
+</html>

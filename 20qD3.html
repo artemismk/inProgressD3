@@ -89,7 +89,6 @@
 		//add firstTimeWrong, firstTimeCorrect, index, provenWrong, possibleRight, and onSymptom to animal data
 		for(i=0; i<diagnoses.length; i++){
 			diagnoses[i].firstTimeWrong = true; //used to index wrong elements
-			diagnoses[i].beenIndexed = true; //used to index correct elements
 			diagnoses[i].index = i;
 			diagnoses[i].possibleRight = false; //indicates element belongs in correct group
 			diagnoses[i].provenWrong = false; //indicates element belongs in wrong group
@@ -237,6 +236,7 @@
 		var onIndexCenter = 0;
 		var correctArray = [];
 
+		//reindex
 		for(i=0;i<diagnoses.length;i++){
 			//go right
 			if(diagnoses[i].provenWrong){
@@ -257,32 +257,13 @@
 						
 			//go left
 			else if(diagnoses[i].possibleRight){
-				var toAdd = [diagnoses[i].name, parseInt(diagnoses[i].numCondMet)];
+				var toAdd = [i, parseInt(diagnoses[i].numCondMet)]; //position in list, number of conditions met
 				correctArray.push(toAdd);
-				
-				if(! diagnoses[i].beenIndexed){
-					//reindex
-					diagnoses[i].index = onIndexCorrect;
-					onIndexCorrect++;
-				}
-				//clear beenIndexed
-				if(diagnoses[i].beenIndexed){
-					diagnoses[i].beenIndexed = false;
-				}
-				
-				//transition
-				var g = d3.select("svg").select("#" + diagnoses[i].name);
-				var currenty = d3.select("svg").select("."+diagnoses[i].name + "Only").attr("y");
-				g.transition()
-						.duration(750)
-						.attr("transform", function(d){ 						
-						return "translate(-370," + (15 + ((d.index)*20)-currenty) + ")"});
 			}
 			
 			
 			//no info, stay center
 			else{
-			
 				//reindex
 				diagnoses[i].index = onIndexCenter;
 				onIndexCenter++;
@@ -302,7 +283,24 @@
    			 return a[1]-b[1];
 		});
 		correctArray.reverse();
-		console.log(correctArray);
+		
+		for(i=0; i<correctArray.length; i++){
+			var pos = correctArray[i][0];
+			diagnoses[pos].index = i;
+		}
+		
+		//transform correct lane
+		for(i=0; i<diagnoses.length; i++){
+			//transition left
+			if(diagnoses[i].possibleRight){
+				var g = d3.select("svg").select("#" + diagnoses[i].name);
+				var currenty = d3.select("svg").select("."+diagnoses[i].name + "Only").attr("y");
+				g.transition()
+						.duration(750)
+						.attr("transform", function(d){ 						
+						return "translate(-370," + (15 + ((d.index)*20)-currenty) + ")"});
+			}
+		}
 	}
 
 </script>

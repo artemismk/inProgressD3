@@ -1,0 +1,828 @@
+
+{
+  "id": "0", "rule": "risk <= 0.5000", "gini": "0.993768816075", "samples": "207", "Code":"F60.2", "Chapter":"18",
+  "left": 
+  {
+    "id": "1", "rule": "orientation <= 0.5000", "gini": "0.992931695072", "samples": "174", "Code":"F91.2", "Chapter":"15",
+    "left": 
+    {
+      "id": "2", "rule": "adl <= 0.5000", "gini": "0.992802768166", "samples": "170", "Code":"F91.9", "Chapter":"15",
+      "left": 
+      {
+        "id": "3", "rule": "somatic <= 0.5000", "gini": "0.99041322314", "samples": "110", "Code":"F31.81", "Chapter":"3",
+        "left": 
+        {
+          "id": "4", "rule": "prereq <= 0.5000", "gini": "0.989490868279", "samples": "99", "Code":"F45.21", "Chapter":"9",
+          "left": 
+          {
+            "id": "5", "rule": "impulse <= 0.5000", "gini": "0.983870967742", "samples": "62", "Code":"F60.5", "Chapter":"18",
+            "left": 
+            {
+              "id": "6", "rule": "hallucination <= 0.5000", "gini": "0.98275862069", "samples": "58", "Code":"F63.3", "Chapter":"6",
+              "left": 
+              {
+                "id": "7", "rule": "attachment <= 0.5000", "gini": "0.982142857143", "samples": "56", "Code":"F91.1", "Chapter":"15",
+                "left": 
+                {
+                  "id": "8", "rule": "duration <= 0.5000", "gini": "0.981132075472", "samples": "53", "Code":"L98.1", "Chapter":"6",
+                  "left": 
+                  {
+                    "id": "9", "rule": "iho <= 0.5000", "gini": "0.958333333333", "samples": "24", "Code":"F42", "Chapter":"6",
+                    "left": 
+                    {
+                      "id": "10", "rule": "sleep <= 0.5000", "gini": "0.95652173913", "samples": "23", "Code":"F42", "Chapter":"6",
+                      "left": 
+                      {
+                        "id": "11", "rule": "delusion <= 0.5000", "gini": "0.888888888889", "samples": "9", "Code":"F45.22", "Chapter":"6",
+                        "left": 
+                        {
+                          "id": "12", "rule": "attention <= 0.5000", "gini": "0.875", "samples": "8", "Code":"F84.0", "Chapter":"1",
+                          "left": 
+                          {
+                            "id": "13", "rule": "substance <= 0.5000", "gini": "0.857142857143", "samples": "7", "Code":"F34.1", "Chapter":"4",
+                            "left": 
+                            {
+                              "id": "14", "rule": "onset <= 0.5000", "gini": "0.8", "samples": "5", "Code":"F50.2", "Chapter":"10",
+                              "left": 
+                              {
+                                "id": "15", "rule": "cogdev <= 0.5000", "gini": "0.75", "samples": "4", "Code":"F50.8", "Chapter":"10",
+                                "left": 
+                                {
+                                  "id": "16", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F98.21", "Chapter":"10"                                
+                                },
+                                "right": 
+                                {
+                                  "id": "17", "criterion": "gini", "impurity": "0.666666666667", "samples": "3", "Code":"F43.10", "Chapter":"7"                                
+                                }                              
+                              },
+                              "right": 
+                              {
+                                "id": "18", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F60.1", "Chapter":"18"                              
+                              }                            
+                            },
+                            "right": 
+                            {
+                              "id": "19", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"N94.3", "Chapter":"4"                            
+                            }                          
+                          },
+                          "right": 
+                          {
+                            "id": "20", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F05", "Chapter":"17"                          
+                          }                        
+                        },
+                        "right": 
+                        {
+                          "id": "21", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F11.20", "Chapter":"16"                        
+                        }                      
+                      },
+                      "right": 
+                      {
+                        "id": "22", "criterion": "gini", "impurity": "0.928571428571", "samples": "14", "Code":"F12.20", "Chapter":"16"                      
+                      }                    
+                    },
+                    "right": 
+                    {
+                      "id": "23", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F17.200", "Chapter":"16"                    
+                    }                  
+                  },
+                  "right": 
+                  {
+                    "id": "24", "rule": "feeling <= 0.5000", "gini": "0.965517241379", "samples": "29", "Code":"F25.1", "Chapter":"2",
+                    "left": 
+                    {
+                      "id": "25", "rule": "substance <= 0.5000", "gini": "0.944444444444", "samples": "18", "Code":"F40.228", "Chapter":"5",
+                      "left": 
+                      {
+                        "id": "26", "rule": "motor <= 0.5000", "gini": "0.941176470588", "samples": "17", "Code":"F40.23x", "Chapter":"5",
+                        "left": 
+                        {
+                          "id": "27", "rule": "sleep <= 0.5000", "gini": "0.928571428571", "samples": "14", "Code":"F40.248", "Chapter":"5",
+                          "left": 
+                          {
+                            "id": "28", "rule": "self.concept <= 0.5000", "gini": "0.916666666667", "samples": "12", "Code":"F40.298", "Chapter":"5",
+                            "left": 
+                            {
+                              "id": "29", "rule": "sexual <= 0.5000", "gini": "0.909090909091", "samples": "11", "Code":"F43.20", "Chapter":"7",
+                              "left": 
+                              {
+                                "id": "30", "rule": "onset <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F43.22", "Chapter":"7",
+                                "left": 
+                                {
+                                  "id": "31", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F43.23", "Chapter":"7"                                
+                                },
+                                "right": 
+                                {
+                                  "id": "32", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F43.24", "Chapter":"7"                                
+                                }                              
+                              },
+                              "right": 
+                              {
+                                "id": "33", "criterion": "gini", "impurity": "0.888888888889", "samples": "9", "Code":"F43.25", "Chapter":"7"                              
+                              }                            
+                            },
+                            "right": 
+                            {
+                              "id": "34", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F51.4", "Chapter":"12"                            
+                            }                          
+                          },
+                          "right": 
+                          {
+                            "id": "35", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F64.1", "Chapter":"14"                          
+                          }                        
+                        },
+                        "right": 
+                        {
+                          "id": "36", "criterion": "gini", "impurity": "0.666666666667", "samples": "3", "Code":"F71", "Chapter":"1"                        
+                        }                      
+                      },
+                      "right": 
+                      {
+                        "id": "37", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F72", "Chapter":"1"                      
+                      }                    
+                    },
+                    "right": 
+                    {
+                      "id": "38", "rule": "behavior <= 0.5000", "gini": "0.909090909091", "samples": "11", "Code":"F73", "Chapter":"1",
+                      "left": 
+                      {
+                        "id": "39", "rule": "sexual <= 0.5000", "gini": "0.8", "samples": "5", "Code":"F81.2", "Chapter":"1",
+                        "left": 
+                        {
+                          "id": "40", "criterion": "gini", "impurity": "0.666666666667", "samples": "3", "Code":"F81.81", "Chapter":"1"                        
+                        },
+                        "right": 
+                        {
+                          "id": "41", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F90.0", "Chapter":"1"                        
+                        }                      
+                      },
+                      "right": 
+                      {
+                        "id": "42", "criterion": "gini", "impurity": "0.833333333333", "samples": "6", "Code":"F90.1", "Chapter":"1"                      
+                      }                    
+                    }                  
+                  }                
+                },
+                "right": 
+                {
+                  "id": "43", "rule": "delusion <= 0.5000", "gini": "0.666666666667", "samples": "3", "Code":"F95.0", "Chapter":"1",
+                  "left": 
+                  {
+                    "id": "44", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F95.1", "Chapter":"1"                  
+                  },
+                  "right": 
+                  {
+                    "id": "45", "rule": "cogdev <= 0.5000", "gini": "0.5", "samples": "2", "Code":"G47.20", "Chapter":"12",
+                    "left": 
+                    {
+                      "id": "46", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.22", "Chapter":"12"                    
+                    },
+                    "right": 
+                    {
+                      "id": "47", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.23", "Chapter":"12"                    
+                    }                  
+                  }                
+                }              
+              },
+              "right": 
+              {
+                "id": "48", "rule": "motor <= 0.5000", "gini": "0.5", "samples": "2", "Code":"G47.24", "Chapter":"12",
+                "left": 
+                {
+                  "id": "49", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.26", "Chapter":"12"                
+                },
+                "right": 
+                {
+                  "id": "50", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.35", "Chapter":"1"                
+                }              
+              }            
+            },
+            "right": 
+            {
+              "id": "51", "rule": "thought <= 0.5000", "gini": "0.75", "samples": "4", "Code":"G47.35", "Chapter":"2",
+              "left": 
+              {
+                "id": "52", "rule": "onset <= 0.5000", "gini": "0.666666666667", "samples": "3", "Code":"G47.36", "Chapter":"1",
+                "left": 
+                {
+                  "id": "53", "rule": "iho <= 0.5000", "gini": "0.5", "samples": "2", "Code":"G47.36", "Chapter":"2",
+                  "left": 
+                  {
+                    "id": "54", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.37", "Chapter":"1"                  
+                  },
+                  "right": 
+                  {
+                    "id": "55", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.37", "Chapter":"2"                  
+                  }                
+                },
+                "right": 
+                {
+                  "id": "56", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.411", "Chapter":"12"                
+                }              
+              },
+              "right": 
+              {
+                "id": "57", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.419", "Chapter":"12"              
+              }            
+            }          
+          },
+          "right": 
+          {
+            "id": "58", "rule": "duration <= 0.5000", "gini": "0.970051132213", "samples": "37", "Code":"G47.429", "Chapter":"12",
+            "left": 
+            {
+              "id": "59", "rule": "attachment <= 0.5000", "gini": "0.946280991736", "samples": "22", "Code":"R06.3", "Chapter":"1",
+              "left": 
+              {
+                "id": "60", "rule": "communication <= 0.5000", "gini": "0.927335640138", "samples": "17", "Code":"R06.3", "Chapter":"2",
+                "left": 
+                {
+                  "id": "61", "rule": "sleep <= 0.5000", "gini": "0.915555555556", "samples": "15", "Code":"F05", "Chapter":"17",
+                  "left": 
+                  {
+                    "id": "62", "rule": "cogdev <= 0.5000", "gini": "0.908163265306", "samples": "14", "Code":"F06.1", "Chapter":"2",
+                    "left": 
+                    {
+                      "id": "63", "rule": "thought <= 0.5000", "gini": "0.899408284024", "samples": "13", "Code":"F06.4", "Chapter":"5",
+                      "left": 
+                      {
+                        "id": "64", "rule": "feeling <= 0.5000", "gini": "0.888888888889", "samples": "12", "Code":"F06.8", "Chapter":"6",
+                        "left": 
+                        {
+                          "id": "65", "rule": "delusion <= 0.5000", "gini": "0.876033057851", "samples": "11", "Code":"F07.0", "Chapter":"18",
+                          "left": 
+                          {
+                            "id": "66", "criterion": "gini", "impurity": "0.888888888889", "samples": "9", "Code":"F11.10", "Chapter":"16"                          
+                          },
+                          "right": 
+                          {
+                            "id": "67", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F11.23", "Chapter":"16"                          
+                          }                        
+                        },
+                        "right": 
+                        {
+                          "id": "68", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F12.10", "Chapter":"16"                        
+                        }                      
+                      },
+                      "right": 
+                      {
+                        "id": "69", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F12.288", "Chapter":"16"                      
+                      }                    
+                    },
+                    "right": 
+                    {
+                      "id": "70", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F15.929", "Chapter":"16"                    
+                    }                  
+                  },
+                  "right": 
+                  {
+                    "id": "71", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F15.93", "Chapter":"16"                  
+                  }                
+                },
+                "right": 
+                {
+                  "id": "72", "rule": "rigidity <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F16.983", "Chapter":"1",
+                  "left": 
+                  {
+                    "id": "73", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F16.983", "Chapter":"6"                  
+                  },
+                  "right": 
+                  {
+                    "id": "74", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F17.203", "Chapter":"16"                  
+                  }                
+                }              
+              },
+              "right": 
+              {
+                "id": "75", "rule": "feeling <= 0.5000", "gini": "0.8", "samples": "5", "Code":"F19.239", "Chapter":"16",
+                "left": 
+                {
+                  "id": "76", "rule": "thought <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F20.81", "Chapter":"2",
+                  "left": 
+                  {
+                    "id": "77", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F20.9", "Chapter":"2"                  
+                  },
+                  "right": 
+                  {
+                    "id": "78", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F21", "Chapter":"18"                  
+                  }                
+                },
+                "right": 
+                {
+                  "id": "79", "rule": "thought <= 0.5000", "gini": "0.666666666667", "samples": "3", "Code":"F22", "Chapter":"2",
+                  "left": 
+                  {
+                    "id": "80", "rule": "behavior <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F23", "Chapter":"2",
+                    "left": 
+                    {
+                      "id": "81", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F25.0", "Chapter":"2"                    
+                    },
+                    "right": 
+                    {
+                      "id": "82", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F28", "Chapter":"2"                    
+                    }                  
+                  },
+                  "right": 
+                  {
+                    "id": "83", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F31.89", "Chapter":"3"                  
+                  }                
+                }              
+              }            
+            },
+            "right": 
+            {
+              "id": "84", "rule": "cogdev <= 0.5000", "gini": "0.933333333333", "samples": "15", "Code":"F34.0", "Chapter":"3",
+              "left": 
+              {
+                "id": "85", "rule": "sexual <= 0.5000", "gini": "0.923076923077", "samples": "13", "Code":"F34.8", "Chapter":"4",
+                "left": 
+                {
+                  "id": "86", "rule": "delusion <= 0.5000", "gini": "0.875", "samples": "8", "Code":"F40.00", "Chapter":"5",
+                  "left": 
+                  {
+                    "id": "87", "rule": "behavior <= 0.5000", "gini": "0.857142857143", "samples": "7", "Code":"F40.10", "Chapter":"5",
+                    "left": 
+                    {
+                      "id": "88", "rule": "feeling <= 0.5000", "gini": "0.8", "samples": "5", "Code":"F40.218", "Chapter":"5",
+                      "left": 
+                      {
+                        "id": "89", "criterion": "gini", "impurity": "0.75", "samples": "4", "Code":"F41.0", "Chapter":"5"                      
+                      },
+                      "right": 
+                      {
+                        "id": "90", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F41.1", "Chapter":"5"                      
+                      }                    
+                    },
+                    "right": 
+                    {
+                      "id": "91", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F41.8", "Chapter":"5"                    
+                    }                  
+                  },
+                  "right": 
+                  {
+                    "id": "92", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F43.0", "Chapter":"7"                  
+                  }                
+                },
+                "right": 
+                {
+                  "id": "93", "rule": "feeling <= 0.5000", "gini": "0.8", "samples": "5", "Code":"F43.21", "Chapter":"7",
+                  "left": 
+                  {
+                    "id": "94", "criterion": "gini", "impurity": "0.75", "samples": "4", "Code":"F43.8", "Chapter":"7"                  
+                  },
+                  "right": 
+                  {
+                    "id": "95", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F44.0", "Chapter":"8"                  
+                  }                
+                }              
+              },
+              "right": 
+              {
+                "id": "96", "rule": "hallucination <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F44.89", "Chapter":"8",
+                "left": 
+                {
+                  "id": "97", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F45.8", "Chapter":"9"                
+                },
+                "right": 
+                {
+                  "id": "98", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F48.1", "Chapter":"8"                
+                }              
+              }            
+            }          
+          }        
+        },
+        "right": 
+        {
+          "id": "99", "rule": "onset <= 0.5000", "gini": "0.892561983471", "samples": "11", "Code":"F51.01", "Chapter":"12",
+          "left": 
+          {
+            "id": "100", "rule": "sensory <= 0.5000", "gini": "0.857142857143", "samples": "7", "Code":"F51.11", "Chapter":"12",
+            "left": 
+            {
+              "id": "101", "rule": "thought <= 0.5000", "gini": "0.833333333333", "samples": "6", "Code":"F51.3", "Chapter":"12",
+              "left": 
+              {
+                "id": "102", "rule": "duration <= 0.5000", "gini": "0.8", "samples": "5", "Code":"F51.5", "Chapter":"12",
+                "left": 
+                {
+                  "id": "103", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F52.0", "Chapter":"13"                
+                },
+                "right": 
+                {
+                  "id": "104", "rule": "attention <= 0.5000", "gini": "0.75", "samples": "4", "Code":"F52.21", "Chapter":"13",
+                  "left": 
+                  {
+                    "id": "105", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F52.22", "Chapter":"13"                  
+                  },
+                  "right": 
+                  {
+                    "id": "106", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F52.31", "Chapter":"13"                  
+                  }                
+                }              
+              },
+              "right": 
+              {
+                "id": "107", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F52.32", "Chapter":"13"              
+              }            
+            },
+            "right": 
+            {
+              "id": "108", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F52.4", "Chapter":"13"            
+            }          
+          },
+          "right": 
+          {
+            "id": "109", "criterion": "gini", "impurity": "0.625", "samples": "4", "Code":"F52.6", "Chapter":"13"          
+          }        
+        }      
+      },
+      "right": 
+      {
+        "id": "110", "rule": "prereq <= 0.5000", "gini": "0.974444444444", "samples": "60", "Code":"F54", "Chapter":"9",
+        "left": 
+        {
+          "id": "111", "rule": "avoidance <= 0.5000", "gini": "0.96625", "samples": "40", "Code":"F60.0", "Chapter":"18",
+          "left": 
+          {
+            "id": "112", "rule": "delusion <= 0.5000", "gini": "0.965373961219", "samples": "38", "Code":"F60.3", "Chapter":"18",
+            "left": 
+            {
+              "id": "113", "rule": "cogdev <= 0.5000", "gini": "0.967592592593", "samples": "36", "Code":"F60.4", "Chapter":"18",
+              "left": 
+              {
+                "id": "114", "rule": "self.concept <= 0.5000", "gini": "0.960219478738", "samples": "27", "Code":"F60.6", "Chapter":"18",
+                "left": 
+                {
+                  "id": "115", "rule": "communication <= 0.5000", "gini": "0.947368421053", "samples": "19", "Code":"F60.7", "Chapter":"18",
+                  "left": 
+                  {
+                    "id": "116", "rule": "sleep <= 0.5000", "gini": "0.941176470588", "samples": "17", "Code":"F60.81", "Chapter":"18",
+                    "left": 
+                    {
+                      "id": "117", "rule": "iho <= 0.5000", "gini": "0.923076923077", "samples": "13", "Code":"F63.0", "Chapter":"16",
+                      "left": 
+                      {
+                        "id": "118", "rule": "behavior <= 0.5000", "gini": "0.916666666667", "samples": "12", "Code":"F63.1", "Chapter":"15",
+                        "left": 
+                        {
+                          "id": "119", "rule": "onset <= 0.5000", "gini": "0.9", "samples": "10", "Code":"F63.2", "Chapter":"15",
+                          "left": 
+                          {
+                            "id": "120", "rule": "detachment <= 0.5000", "gini": "0.888888888889", "samples": "9", "Code":"F63.81", "Chapter":"15",
+                            "left": 
+                            {
+                              "id": "121", "rule": "motor <= 0.5000", "gini": "0.875", "samples": "8", "Code":"F64.2", "Chapter":"14",
+                              "left": 
+                              {
+                                "id": "122", "rule": "feeling <= 0.5000", "gini": "0.857142857143", "samples": "7", "Code":"F65.0", "Chapter":"19",
+                                "left": 
+                                {
+                                  "id": "123", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F65.1", "Chapter":"1"                                
+                                },
+                                "right": 
+                                {
+                                  "id": "124", "criterion": "gini", "impurity": "0.8", "samples": "5", "Code":"F65.1", "Chapter":"9"                                
+                                }                              
+                              },
+                              "right": 
+                              {
+                                "id": "125", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F65.2", "Chapter":"1"                              
+                              }                            
+                            },
+                            "right": 
+                            {
+                              "id": "126", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F65.2", "Chapter":"9"                            
+                            }                          
+                          },
+                          "right": 
+                          {
+                            "id": "127", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F65.3", "Chapter":"19"                          
+                          }                        
+                        },
+                        "right": 
+                        {
+                          "id": "128", "rule": "thought <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F65.4", "Chapter":"19",
+                          "left": 
+                          {
+                            "id": "129", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F65.51", "Chapter":"1"                          
+                          },
+                          "right": 
+                          {
+                            "id": "130", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F65.51", "Chapter":"9"                          
+                          }                        
+                        }                      
+                      },
+                      "right": 
+                      {
+                        "id": "131", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F65.52", "Chapter":"19"                      
+                      }                    
+                    },
+                    "right": 
+                    {
+                      "id": "132", "rule": "attachment <= 0.5000", "gini": "0.75", "samples": "4", "Code":"F65.81", "Chapter":"1",
+                      "left": 
+                      {
+                        "id": "133", "rule": "duration <= 0.5000", "gini": "0.666666666667", "samples": "3", "Code":"F65.81", "Chapter":"9",
+                        "left": 
+                        {
+                          "id": "134", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F68.10", "Chapter":"9"                        
+                        },
+                        "right": 
+                        {
+                          "id": "135", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F70", "Chapter":"1"                        
+                        }                      
+                      },
+                      "right": 
+                      {
+                        "id": "136", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F72", "Chapter":"1"                      
+                      }                    
+                    }                  
+                  },
+                  "right": 
+                  {
+                    "id": "137", "rule": "onset <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F73", "Chapter":"1",
+                    "left": 
+                    {
+                      "id": "138", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F79", "Chapter":"1"                    
+                    },
+                    "right": 
+                    {
+                      "id": "139", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F80.0", "Chapter":"1"                    
+                    }                  
+                  }                
+                },
+                "right": 
+                {
+                  "id": "140", "rule": "feeling <= 0.5000", "gini": "0.84375", "samples": "8", "Code":"F80.2", "Chapter":"1",
+                  "left": 
+                  {
+                    "id": "141", "rule": "duration <= 0.5000", "gini": "0.625", "samples": "4", "Code":"F80.81", "Chapter":"1",
+                    "left": 
+                    {
+                      "id": "142", "rule": "thought <= 0.5000", "gini": "0.444444444444", "samples": "3", "Code":"F80.89", "Chapter":"1",
+                      "left": 
+                      {
+                        "id": "143", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F81.0", "Chapter":"1"                      
+                      },
+                      "right": 
+                      {
+                        "id": "144", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F82", "Chapter":"1"                      
+                      }                    
+                    },
+                    "right": 
+                    {
+                      "id": "145", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F88", "Chapter":"1"                    
+                    }                  
+                  },
+                  "right": 
+                  {
+                    "id": "146", "rule": "attachment <= 0.5000", "gini": "0.75", "samples": "4", "Code":"F90.2", "Chapter":"1",
+                    "left": 
+                    {
+                      "id": "147", "rule": "duration <= 0.5000", "gini": "0.666666666667", "samples": "3", "Code":"F91.3", "Chapter":"15",
+                      "left": 
+                      {
+                        "id": "148", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F93.0", "Chapter":"5"                      
+                      },
+                      "right": 
+                      {
+                        "id": "149", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F94.0", "Chapter":"5"                      
+                      }                    
+                    },
+                    "right": 
+                    {
+                      "id": "150", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F94.1", "Chapter":"7"                    
+                    }                  
+                  }                
+                }              
+              },
+              "right": 
+              {
+                "id": "151", "rule": "feeling <= 0.5000", "gini": "0.83950617284", "samples": "9", "Code":"F94.2", "Chapter":"7",
+                "left": 
+                {
+                  "id": "152", "rule": "motor <= 0.5000", "gini": "0.8125", "samples": "8", "Code":"F95.2", "Chapter":"1",
+                  "left": 
+                  {
+                    "id": "153", "rule": "communication <= 0.5000", "gini": "0.816326530612", "samples": "7", "Code":"F98.0", "Chapter":"11",
+                    "left": 
+                    {
+                      "id": "154", "criterion": "gini", "impurity": "0.666666666667", "samples": "3", "Code":"F98.1", "Chapter":"11"                    
+                    },
+                    "right": 
+                    {
+                      "id": "155", "rule": "behavior <= 0.5000", "gini": "0.75", "samples": "4", "Code":"F98.4", "Chapter":"1",
+                      "left": 
+                      {
+                        "id": "156", "criterion": "gini", "impurity": "0.666666666667", "samples": "3", "Code":"G25.81", "Chapter":"12"                      
+                      },
+                      "right": 
+                      {
+                        "id": "157", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.09", "Chapter":"1"                      
+                      }                    
+                    }                  
+                  },
+                  "right": 
+                  {
+                    "id": "158", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.09", "Chapter":"2"                  
+                  }                
+                },
+                "right": 
+                {
+                  "id": "159", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"G47.21", "Chapter":"12"                
+                }              
+              }            
+            },
+            "right": 
+            {
+              "id": "160", "criterion": "gini", "impurity": "0.0", "samples": "2", "Code":"G47.31", "Chapter":"1"            
+            }          
+          },
+          "right": 
+          {
+            "id": "161", "criterion": "gini", "impurity": "0.0", "samples": "2", "Code":"G47.31", "Chapter":"2"          
+          }        
+        },
+        "right": 
+        {
+          "id": "162", "rule": "duration <= 0.5000", "gini": "0.905", "samples": "20", "Code":"G47.33", "Chapter":"12",
+          "left": 
+          {
+            "id": "163", "rule": "behavior <= 0.5000", "gini": "0.760330578512", "samples": "11", "Code":"G47.34", "Chapter":"1",
+            "left": 
+            {
+              "id": "164", "rule": "sensory <= 0.5000", "gini": "0.72", "samples": "10", "Code":"G47.34", "Chapter":"2",
+              "left": 
+              {
+                "id": "165", "criterion": "gini", "impurity": "0.72", "samples": "5", "Code":"G47.419", "Chapter":"12"              
+              },
+              "right": 
+              {
+                "id": "166", "criterion": "gini", "impurity": "0.72", "samples": "5", "Code":"G47.52", "Chapter":"12"              
+              }            
+            },
+            "right": 
+            {
+              "id": "167", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"Z72.0", "Chapter":"16"            
+            }          
+          },
+          "right": 
+          {
+            "id": "168", "rule": "delusion <= 0.5000", "gini": "0.888888888889", "samples": "9", "Code":"F06.0", "Chapter":"2",
+            "left": 
+            {
+              "id": "169", "rule": "attention <= 0.5000", "gini": "0.875", "samples": "8", "Code":"F06.0", "Chapter":"2",
+              "left": 
+              {
+                "id": "170", "rule": "iho <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F10.20", "Chapter":"16",
+                "left": 
+                {
+                  "id": "171", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F10.20", "Chapter":"16"                
+                },
+                "right": 
+                {
+                  "id": "172", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F13.20", "Chapter":"16"                
+                }              
+              },
+              "right": 
+              {
+                "id": "173", "rule": "self.concept <= 0.5000", "gini": "0.833333333333", "samples": "6", "Code":"F13.20", "Chapter":"16",
+                "left": 
+                {
+                  "id": "174", "rule": "cogdev <= 0.5000", "gini": "0.8", "samples": "5", "Code":"F16.20", "Chapter":"16",
+                  "left": 
+                  {
+                    "id": "175", "rule": "behavior <= 0.5000", "gini": "0.75", "samples": "4", "Code":"F16.20", "Chapter":"16",
+                    "left": 
+                    {
+                      "id": "176", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F18.20", "Chapter":"16"                    
+                    },
+                    "right": 
+                    {
+                      "id": "177", "criterion": "gini", "impurity": "0.666666666667", "samples": "3", "Code":"F18.20", "Chapter":"16"                    
+                    }                  
+                  },
+                  "right": 
+                  {
+                    "id": "178", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F19.20", "Chapter":"16"                  
+                  }                
+                },
+                "right": 
+                {
+                  "id": "179", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F19.20", "Chapter":"16"                
+                }              
+              }            
+            },
+            "right": 
+            {
+              "id": "180", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F44.4", "Chapter":"9"            
+            }          
+          }        
+        }      
+      }    
+    },
+    "right": 
+    {
+      "id": "181", "rule": "attention <= 0.5000", "gini": "0.625", "samples": "4", "Code":"F44.4", "Chapter":"9",
+      "left": 
+      {
+        "id": "182", "rule": "motor <= 0.5000", "gini": "0.5", "samples": "2", "Code":"F44.5", "Chapter":"9",
+        "left": 
+        {
+          "id": "183", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F44.5", "Chapter":"9"        
+        },
+        "right": 
+        {
+          "id": "184", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F44.6", "Chapter":"9"        
+        }      
+      },
+      "right": 
+      {
+        "id": "185", "criterion": "gini", "impurity": "0.0", "samples": "2", "Code":"F44.6", "Chapter":"9"      
+      }    
+    }  
+  },
+  "right": 
+  {
+    "id": "186", "rule": "avoidance <= 0.5000", "gini": "0.951331496786", "samples": "33", "Code":"F44.7", "Chapter":"9",
+    "left": 
+    {
+      "id": "187", "rule": "prereq <= 0.5000", "gini": "0.90625", "samples": "16", "Code":"F44.7", "Chapter":"9",
+      "left": 
+      {
+        "id": "188", "rule": "duration <= 0.5000", "gini": "0.79012345679", "samples": "9", "Code":"F06.2", "Chapter":"2",
+        "left": 
+        {
+          "id": "189", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F06.2", "Chapter":"2"        
+        },
+        "right": 
+        {
+          "id": "190", "criterion": "gini", "impurity": "0.75", "samples": "8", "Code":"F10.10", "Chapter":"16"        
+        }      
+      },
+      "right": 
+      {
+        "id": "191", "rule": "feeling <= 0.5000", "gini": "0.857142857143", "samples": "7", "Code":"F10.10", "Chapter":"16",
+        "left": 
+        {
+          "id": "192", "rule": "onset <= 0.5000", "gini": "0.75", "samples": "4", "Code":"F13.10", "Chapter":"16",
+          "left": 
+          {
+            "id": "193", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F13.10", "Chapter":"16"          
+          },
+          "right": 
+          {
+            "id": "194", "criterion": "gini", "impurity": "0.666666666667", "samples": "3", "Code":"F16.10", "Chapter":"16"          
+          }        
+        },
+        "right": 
+        {
+          "id": "195", "rule": "impulse <= 0.5000", "gini": "0.666666666667", "samples": "3", "Code":"F16.10", "Chapter":"16",
+          "left": 
+          {
+            "id": "196", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F18.10", "Chapter":"16"          
+          },
+          "right": 
+          {
+            "id": "197", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F18.10", "Chapter":"16"          
+          }        
+        }      
+      }    
+    },
+    "right": 
+    {
+      "id": "198", "rule": "feeling <= 0.5000", "gini": "0.899653979239", "samples": "17", "Code":"F19.10", "Chapter":"16",
+      "left": 
+      {
+        "id": "199", "rule": "duration <= 0.5000", "gini": "0.5", "samples": "4", "Code":"F19.10", "Chapter":"16",
+        "left": 
+        {
+          "id": "200", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F44.4", "Chapter":"9"        
+        },
+        "right": 
+        {
+          "id": "201", "criterion": "gini", "impurity": "0.5", "samples": "2", "Code":"F44.4", "Chapter":"9"        
+        }      
+      },
+      "right": 
+      {
+        "id": "202", "rule": "duration <= 0.5000", "gini": "0.87573964497", "samples": "13", "Code":"F44.81", "Chapter":"8",
+        "left": 
+        {
+          "id": "203", "rule": "attachment <= 0.5000", "gini": "0.8", "samples": "5", "Code":"F44.81", "Chapter":"8",
+          "left": 
+          {
+            "id": "204", "criterion": "gini", "impurity": "0.75", "samples": "4", "Code":"F45.1", "Chapter":"9"          
+          },
+          "right": 
+          {
+            "id": "205", "criterion": "gini", "impurity": "0.0", "samples": "1", "Code":"F45.22", "Chapter":"6"          
+          }        
+        },
+        "right": 
+        {
+          "id": "206", "criterion": "gini", "impurity": "0.75", "samples": "8", "Code":"F45.22", "Chapter":"6"        
+        }      
+      }    
+    }  
+  }
+}
