@@ -4,18 +4,18 @@ import codecs
 def main():
     #READ IN DATA
     diagCode = []
-    csvFile = open('PivotNoSymptoms.csv', 'r')
+    csvFile = open('PivotNoSymptomsShort.csv', 'r')
     for line in csvFile:
         diagCode.append(line.strip()) #get rid of \n at end of each line
     #format header, 
-    header= diagCode[0].split(',')
+    header  = diagCode[0].split(',')
     for x in range(0, len(header)):
         header[x] = '"' + header[x] + '"'
     header = ','.join(header[2: ]) #keeps only the categories
     diagCode = diagCode[1: ] #get rid of header
     #READ IN DATA OF NAMES
     namesArr = []
-    with codecs.open('names-codes.csv','r',encoding='ascii', errors ='ignore') as csvNamesFile:
+    with codecs.open('names-codes.csv','r',encoding='utf8') as csvNamesFile:
         namesArr = csvNamesFile.read().split('\r\n')
     temp = []
     namesArrFormatted = []
@@ -34,21 +34,21 @@ def main():
                 namesList.append(lookingAt[1])
                 break
     #FORMAT TO JSON
-    jsonFile = open('codes.json', 'w')
+    jsonFile = open('codesShort.json', 'w')
     #Header
     jsonFile.write('{"header" : [' + header)
     jsonFile.write('],')
     jsonFile.write("\n")
     #Diagnoses
     dataLinked = []
+        
     for x in range(0, len(diagCode)-1) :
         temp = diagCode[x].split(',')
-        print(temp[1])
         data = '''
             {"fullName" : "''' + namesList[x].encode('UTF-8') + '''",
-            "nameCode" : "''' + temp[0].encode('UTF-8') + '''",
-            "code" : [''' + ','.join(temp[2: ]).encode('UTF-8') + '],' + '''
-            "chapter" : ''' + temp[1].encode('UTF-8') + '}'
+            "nameCode" : "''' + temp[0] + '''",
+            "code" : [''' + ','.join(temp[2: ]) + '],' + '''
+            "chapter" : ''' + temp[1] + '}'
         
         dataLinked.append(data)
     jsonFile.write('"diagnoses" : [')

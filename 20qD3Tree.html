@@ -56,12 +56,20 @@
 	
 	<script>
 
-	
+	//MAJOR FUTURE GOALS:
+		//-connect circles to yes/no answers
+				//-make circles that have been validated move up, proved wrong move down
+				//-change shade of color of circles depending
+		//-fix text once clicked to have different line per element
+		//-find a better way to organize circles per chapter
+			//-instead of columns, put small circles into one larger circle (?)
+			
+				
 	
 	//import tree data
-	d3.json("TreeRawData.json", function(error, data){
+	d3.json("treeOfPerfection.json", function(error, data){
 		root = data;
-		document.getElementById("question").innerHTML = "Does the patient display problems with" + root.rule;
+		document.getElementById("question").innerHTML = "Does the patient display problems with " + root.rule.substr(0, root.rule.indexOf('<')-1) + '?';
 	});
 	
 	var root;
@@ -69,9 +77,8 @@
 	var diagnoses;
 	var numChapters = 19;
 	var chapterOrg = [];
-	//var numWrong = -1;
-	//var onIndexWrong = 0;
-	//var onIndexCorrect = 0;
+	
+	//use this to create the text for the log
 	var symptomText = "<em>Log of Symptoms:</em> <br>";
 	
 	document.getElementById("symptoms").innerHTML = symptomText;
@@ -81,69 +88,107 @@
 		header = data.header;
 		diagnoses = data.diagnoses;
 		
+		index = 0;
 		for(i=0; i<diagnoses.length; i++){
-			diagnoses[i].size = 50;
-						
-			// diagnoses[i].firstTimeWrong = true; //used to index wrong elements
-// 			diagnoses[i].index = i;
-// 			diagnoses[i].possibleRight = false; //indicates element belongs in correct group
-// 			diagnoses[i].provenWrong = false; //indicates element belongs in wrong group
-// 			diagnoses[i].onSymptom = 0; //to prevent gaps between symptoms list
-// 			diagnoses[i].numCondMet = 0; //to index correct elements by most to least likely
+			//add common size of circles to start and text to be displayed
+			diagnoses[i].size = 20;
+			diagnoses[i].text = diagnoses[i].nameCode;
+			
+			//look through and make a list of symptom categories
+			symptCat = [];
+			currCode = diagnoses[i].code;
+			for(j=0;j<currCode.length;j++){
+				if(currCode[j] == 1){
+					//add symptom corresponding to code
+					symptCat.push(header[j]);
+				}
+			}
+			diagnoses[i].symptoms = symptCat;
 		}
-		
 		//organize all diagnoses by chapter
 		var tempChapterArr = [];
 		for(i=0; i<numChapters+1; i++){
 			for(j=0; j<diagnoses.length; j++){
 				if(diagnoses[j].chapter == i){
 					tempChapterArr.push(diagnoses[j]);
+					diagnoses[j].index = tempChapterArr.length;
 				}
 			}
+			//chapter Org is a list of lists organized by chapter
 			chapterOrg.push(tempChapterArr);
 			tempChapterArr = [];
 		}
-		console.log(chapterOrg);
+	
+		//TO WORK ON:
+		//move circle object to front when clicked on. Also need to move the text even more in front
+		// d3.selection.prototype.moveToFront = function() {
+//  			 return this.each(function(){
+//    			 this.parentNode.appendChild(this);
+//  			 });
+// 		};
 	
 		//create SVG container			
 		var svg = d3.select("body").append("svg")
 			.attr("width",1500)
-			.attr("height",500);
+			.attr("height",1500);
+			
+		var elem = svg.selectAll("circle")
+        .data(diagnoses);
+        
+        var elemEnter = elem.enter()
+	    .append("g");
 		
-		//create name elements	
-		svg.selectAll("g")
-			.data(diagnoses)
-			.enter()
-				.append("g")
-					.attr("id", function(d) {return d.name})
-					.append("text");
-						
-		// create symptom elements
-// 		for(i=0; i<diagnoses[0].code.length; i++){
-// 			svg.selectAll('g')	
-// 				.append('text')
-// 					.attr("class", function() {return header[i]})
-// 					.attr("x", function(d) {return 500 + (d.onSymptom*100)})
-// 					.attr("y", function(d) {return 15 + (d.index*20); })
-// 					.text( function (d) {
-// 						if(d.code[i] == 0) {return ""}
-// 						if(d.code[i] == 1) {d.onSymptom++; return header[i]}
-// 						if(d.code[i] == -1){d.onSymptom++; return "not " + header[i]}
-// 					;})
-// 					.attr("font-family", "sans-serif")
-// 					.attr("font-size", "14px")
-// 					.attr("fill", "black");
-// 		}
+		//circle elements created and organized column wise by chapter
+		var circle = elemEnter.append("circle")
+    		.style("fill", "aqua")
+    		.attr("stroke","black")
+    		.on("click", function(d) {zoom(d)})
+    		.attr("cx", function(d){return d.chapter*50})
+			.attr("cy", function(d) {return d.index*50})
+    		.attr("r", function(d){return d.size});
+				    	
+		//text elements with code added to circles   	
+		elemEnter.append("text")
+	    .attr("dx", function(d){return d.chapter*50})
+	    .attr("dy", function(d) {return d.index*50})
+	    .style("font-size","10px")
+	    .style("text-anchor", "middle")
+	    .text(function(d){return d.text});		
+							
 	});
-	
+
+	//called when an element is clicked on, changes size and text of circle
+	function zoom(d){
+		if(d.size == 20){
+			d.size = 50;
+			d.text = d.symptoms;
+		}
+		else{
+			d.size = 20;
+			d.text = d.nameCode;
+			
+		}	
+		
+		d3.selectAll("svg").selectAll("circle")
+			.attr("r", function(d){return d.size});
+			
+		d3.selectAll("svg").selectAll("text")
+			.text(function(d){return d.text})
+			.style("text-anchor", "middle")
+	}
 	
 	function yesResponse() {
 			root = root.left;
-			document.getElementById("question").innerHTML = "Does the patient display problems with" + root.rule;
-			//update log
-			symptomText = symptomText + "Problems with" + root.rule + "<br>";
+			try{
+				document.getElementById("question").innerHTML = "Does the patient display problems with " + root.rule.substr(0, root.rule.indexOf('<')-1) + '?';
+				//update log
+				symptomText = symptomText + "Problems with " + root.rule.substr(0, root.rule.indexOf('<')-1) + "<br>";
+			}
+			catch(err){
+				document.getElementById("question").innerHTML = "The patient likely has " + root.Code;
+
+			}
 			if(!root.right){
-				document.getElementById("question").innerHTML = root.id;
 				document.getElementById("yesButton").disabled = true;
   		  	    document.getElementById("noButton").disabled = true;
 			}
@@ -156,11 +201,15 @@
 	
 	function noResponse() {
 			root = root.right;
-			document.getElementById("question").innerHTML = "Does the patient display problems with" + root.rule;
-			//update log
-			symptomText = symptomText + "No problems with" + root.rule + "<br>";
+			try{
+				document.getElementById("question").innerHTML = "Does the patient display problems with " + root.rule.substr(0, root.rule.indexOf('<')-1) + '?';
+				//update log
+				symptomText = symptomText + "No problems with " + root.rule.substr(0, root.rule.indexOf('<')-1) + "<br>";
+			}
+			catch(err){
+				document.getElementById("question").innerHTML = "The patient likely has " + root.Code;			
+			}
 			if(!root.right){
-				document.getElementById("question").innerHTML = root.id;
 				document.getElementById("yesButton").disabled = true;
   		  	    document.getElementById("noButton").disabled = true;
 			}

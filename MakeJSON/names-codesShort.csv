@@ -1,0 +1,122 @@
+Codes,Name
+F70,Intellectual disability (intellectual developmental disorder) - Mild
+F71,Intellectual disability (intellectual developmental disorder) - Moderate
+F72,Intellectual disability (intellectual developmental disorder) - Severe
+F72,Intellectual disability (intellectual developmental disorder) - Severe
+F73,Intellectual disability (intellectual developmental disorder) - Profound
+F73,Intellectual disability (intellectual developmental disorder) - Profound
+F79,Unspecified intellectual disability (intellectual developmental disorder)
+F80.0,Speech sound disorder
+F80.2,Language disorder
+F80.81,Childhood-onset fluency disorder (stuttering)
+F80.89,Social (pragmatic) communication disorder
+F81.0,Specific learning disorder with impairment in reading
+F81.2,Specific learning disorder with impairment in mathematics
+F81.81,Specific learning disorder with impairment in written expression
+F82,Developmental coordination disorder
+F84.0,Autism spectrum disorder
+F88,Global developmental delay
+F89,Unspecified neurodevelopmental disorder
+F90.0,Attention-deficit/hyperactivity disorder - Predominantly inattentive presentation
+F90.1,Attention-deficit/hyperactivity disorder - Predominantly hyperactive/impulsive presentation
+F90.2,Attention-deficit/hyperactivity disorder - Combined presentation
+F95.0,Provisional tic disorder
+F95.1,Persistent (chronic) motor or vocal tic disorder
+F95.2,TouretteÍs disorder
+F98.4,Stereotypic movement disorder
+F06.0,Psychotic disorder due to another medical condition with hallucinations
+F06.0,Psychotic disorder due to another medical condition with hallucinations
+F06.1,Catatonia associated with another mental disorder (catatonia specifier)
+F06.2,Psychotic disorder due to another medical condition with delusions
+F06.2,Psychotic disorder due to another medical condition with delusions
+F10.159,Alcohol-induced psychotic disorder with mild use disorder
+F10.259,Alcohol-induced psychotic disorder with moderate or severe use disorder
+F10.959,Alcohol-induced psychotic disorder without use disorder
+F12.159,Cannabis-induced psychotic disorder with mild use disorder
+F12.259,Cannabis-induced psychotic disorder with moderate or severe use disorder
+F12.959,Cannabis-induced psychotic disorder without use disorder
+F13.159,"Sedative-, hypnotic-, or anxiolytic-induced psychotic disorder with mild use disorder"
+F13.259,"Sedative-, hypnotic-, or anxiolytic-induced psychotic disorder with moderate or severe use disorder"
+F13.959,"Sedative-, hypnotic-, or anxiolytic-induced psychotic disorder without use disorder"
+F14.159,Cocaine-induced psychotic disorder with mild use disorder
+F14.259,Cocaine-induced psychotic disorder with moderate or severe use disorder
+F14.959,Cocaine-induced psychotic disorder without use disorder
+F15.159,Amphetamine (or other stimulant)_induced psychotic disorder with mild use disorder
+F15.259,Amphetamine (or other stimulant)_induced psychotic disorder with moderate or severe use disorder
+F15.959,Amphetamine (or other stimulant)_induced psychotic disorder without use disorder
+F16.159,Other hallucinogen_induced psychotic disorder with mild use disorder
+F16.259,Other hallucinogen_induced psychotic disorder with moderate or severe use disorder
+F16.959,Other hallucinogen_induced psychotic disorder without use disorder
+F18.159,Inhalant-induced psychotic disorder with mild use disorder
+F18.259,Inhalant-induced psychotic disorder with moderate or severe use disorder
+F18.959,Inhalant-induced psychotic disorder without use disorder
+F19.159,Other (or unknown) substance_induced psychotic disorder with mild use disorder
+F19.259,Other (or unknown) substance_induced psychotic disorder with moderate or severe use disorder
+F19.959,Other (or unknown) substance_induced psychotic disorder without use disorder
+F20.81,Schizophreniform disorder
+F20.9,Schizophrenia
+F22,Delusional disorder
+F23,Brief psychotic disorder
+F25.0,Schizoaffective disorder - Bipolar type
+F25.0,Schizoaffective disorder - Bipolar type
+F25.1,Schizoaffective disorder - Depressive type
+F25.1,Schizoaffective disorder - Depressive type
+F28,Other specified schizophrenia spectrum and other psychotic disorder
+F31.11,"Bipolar I disorder, Current or most recent episode manic - Mild"
+F31.12,"Bipolar I disorder, Current or most recent episode manic - Moderate"
+F31.13,"Bipolar I disorder, Current or most recent episode manic - Severe"
+F31.2,"Bipolar I disorder, Current or most recent episode manic with psychotic features"
+F31.31,"Bipolar I disorder, Current or most recent episode depressed - Mild"
+F31.32,"Bipolar I disorder, Current or most recent episode depressed - Moderate"
+F31.4,"Bipolar I disorder, Current or most recent episode depressed - Severe"
+F31.5,"Bipolar I disorder, Current or most recent episode depressed with psychotic features"
+F31.71,"Bipolar I disorder, Current or most recent episode hypomanic - In partial remission"
+F31.72,"Bipolar I disorder, Current or most recent episode hypomanic - In full remission"
+F31.73,"Bipolar I disorder, Current or most recent episode manic - In partial remission"
+F31.74,"Bipolar I disorder, Current or most recent episode manic - In full remission"
+F31.75,"Bipolar I disorder, Current or most recent episode depressed - In partial remission"
+F31.76,"Bipolar I disorder, Current or most recent episode depressed - In full remission"
+F31.81,Bipolar II disorder
+F31.89,Other specified bipolar and related disorder
+F31.9,"Bipolar I disorder, Current or most recent episode depressed with psychotic features - Unspecified"
+F34.0,Cyclothymic disorder
+F11.14,Opioid-induced depressive disorder with mild use disorder
+F11.24,Opioid-induced depressive disorder with moderate or severe use disorder
+F11.94,Opioid-induced depressive disorder without use disorder
+F18.14,Inhalant-induced depressive disorder with mild use disorder
+F18.24,Inhalant-induced depressive disorder with moderate or severe use disorder
+F18.94,Inhalant-induced depressive disorder without use disorder
+F32.0,"Major depressive disorder, Single episode - Mild"
+F32.1,"Major depressive disorder, Single episode - Moderate"
+F32.2,"Major depressive disorder, Single episode - Severe"
+F32.3,"Major depressive disorder, Single episode with psychotic features"
+F32.4,"Major depressive disorder, Single episode - In partial remission"
+F32.5,"Major depressive disorder, Single episode - In full remission"
+F32.8,Other specified depressive disorder
+F32.9,"Major depressive disorder, Single episode with psychotic features - Unspecifed"
+F33.0,"Major depressive disorder, Recurrent episode - Mild"
+F33.1,"Major depressive disorder, Recurrent episode - Moderate"
+F33.2,"Major depressive disorder, Recurrent episode - Severe"
+F33.3,"Major depressive disorder, Recurrent episode with psychotic features"
+F33.41,"Major depressive disorder, Recurrent episode - In partial remission"
+F33.42,"Major depressive disorder, Recurrent episode - In full remission"
+F33.9,"Major depressive disorder, Recurrent episode with psychotic features - Unspecified"
+F34.1,Persistent depressive disorder (dysthymia)
+F34.1,Persistent depressive disorder (dysthymia)
+F34.1,Persistent depressive disorder (dysthymia)
+F34.1,Persistent depressive disorder (dysthymia)
+F34.8,Disruptive mood dysregulation disorder
+N94.3,Premenstrual dysphoric disorder
+F06.4,Anxiety disorder due to another medical condition
+F10.180,Alcohol-induced anxiety disorder with mild use disorder
+F10.280,Alcohol-induced anxiety disorder with moderate or severe use disorder
+F10.980,Alcohol-induced anxiety disorder without use disorder
+F11.188,Opioid-induced anxiety disorder with mild use disorder
+F11.288,Opioid-induced anxiety disorder with moderate or severe use disorder
+F11.988,Opioid-induced anxiety disorder without use disorder
+F12.180,Cannabis-induced anxiety disorder with mild use disorder
+F12.280,Cannabis-induced anxiety disorder with moderate or severe use disorder
+F12.980,Cannabis-induced anxiety disorder without use disorder
+F13.180,"Sedative-, hypnotic-, or anxiolytic-induced anxiety disorder with mild use disorder"
+F13.280,"Sedative-, hypnotic-, or anxiolytic-induced anxiety disorder with moderate or severe use disorder"
+F13.980,"Sedative-, hypnotic-, or anxiolytic-induced anxiety disorder without use disorder"
